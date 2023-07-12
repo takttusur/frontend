@@ -1,5 +1,5 @@
-import taktLogo from '/takt.svg'
-import './App.css'
+import taktLogo from './assets/takt.svg';
+import './App.css';
 
 function App() {
   return (
