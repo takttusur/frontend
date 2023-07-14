@@ -1,15 +1,15 @@
-FROM node:18-alpine as builder
-ENV NODE_ENV production
+FROM node:20-alpine as builder
 ENV PATH /app/node_modules/.bin:$PATH
 WORKDIR /app
 COPY package.json .
 COPY package-lock.json .
 RUN npm ci --silent
 COPY . .
+ENV NODE_ENV production
 RUN npm run build
 
 FROM nginx:stable-alpine
 WORKDIR /usr/share/nginx/html
 RUN rm -rf ./*
-COPY --from=builder /app/build .
+COPY --from=builder /app/dist .
 CMD ["nginx", "-g", "daemon off;"]
