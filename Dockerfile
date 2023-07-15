@@ -2,8 +2,7 @@ FROM node:20-alpine as builder
 LABEL org.opencontainers.image.source="https://github.com/takttusur/takt-public"
 ENV PATH /app/node_modules/.bin:$PATH
 WORKDIR /app
-COPY package.json .
-COPY package-lock.json .
+COPY package.json package-lock.json ./
 RUN npm ci --silent
 COPY . .
 ENV NODE_ENV production
