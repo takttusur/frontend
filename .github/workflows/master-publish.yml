@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - 'master'
+    tags:
+      - 'v*'
 
 env:
   REGISTRY: ghcr.io
@@ -36,6 +38,7 @@ jobs:
         run: npm run lint
       - name: Test
         run: npm run test
+        
   build:
     needs: [test]
     runs-on: ubuntu-latest
@@ -70,6 +73,7 @@ jobs:
             dist
             !dist/**/*.md
           retention-days: 30
+          
   publish:
     needs: [build]
     runs-on: ubuntu-latest
@@ -93,6 +97,9 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'master') }}
+            type=semver,pattern={{version}},event=tag
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
