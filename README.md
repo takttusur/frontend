@@ -2,6 +2,9 @@
 
 Основная часть веб-сайта клуба, открытая для публичного доступа.
 
+[![Publish master](https://github.com/takttusur/takt-public/actions/workflows/master-publish.yml/badge.svg?branch=master)](https://github.com/takttusur/takt-public/actions/workflows/master-publish.yml)
+[![Build develop](https://github.com/takttusur/takt-public/actions/workflows/develop-build.yml/badge.svg?branch=develop)](https://github.com/takttusur/takt-public/actions/workflows/develop-build.yml)
+
 ## Функциональность
 
 * Отображение новостей
