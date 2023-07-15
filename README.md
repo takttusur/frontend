@@ -14,3 +14,33 @@
 * [Chakra-UI](https://chakra-ui.com)
 * [TanStack/query](https://github.com/TanStack/query)
 * [Vite](https://vitejs.dev)
+* [Docker](https://www.docker.com)
+
+## Сборка
+
+1. Установить необходимое ПО: 
+   1. [Node.js](https://nodejs.org/en)
+   2. [Git](https://git-scm.com)
+   3. Если требуется работа с контейнерами:
+      1. [Docker](https://docs.docker.com/desktop/install/windows-install/) 
+      2. [Docker Compose](https://docs.docker.com/compose/install/) 
+2. Склонировать проект `git clone https://github.com/takttusur/takt-public.git`
+3. Открыть командную строку в папке с проектом и выполнить:
+   1. `npm install` - для установки зависимостей
+   2. `npm run lint` - для проверки кода
+   3. `npm run test` - для запуска автотестов
+   4. `npm run build` - для сборки проекта, результат будет в папке `dist`
+   5. `npm run dev` - для запуска дев-сервера с проектом
+
+## Развертывание
+
+Публикация выполняется при обновлении ветки `master` или создании тега `v*`,
+проект собирается в docker-образ с [nginx](https://www.nginx.com) 
+и публикуется в [GitHub Container Registry](https://github.com/takttusur/takt-public/pkgs/container/takt-public)
+
+Получить актуальную версию: `docker pull ghcr.io/takttusur/takt-public:latest`
+
+## Зависимости
+
+_Планируется, что веб-приложение будет зависеть от серверной части, но пока таких зависимостей нет. 
+Когда появятся, будут указаны ниже._ 
