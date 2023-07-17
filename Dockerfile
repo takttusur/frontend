@@ -1,5 +1,6 @@
 FROM node:20-alpine as builder
 LABEL org.opencontainers.image.source="https://github.com/takttusur/takt-public"
+EXPOSE 80
 ENV PATH /app/node_modules/.bin:$PATH
 WORKDIR /app
 COPY package.json package-lock.json ./
