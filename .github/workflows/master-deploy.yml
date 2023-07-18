@@ -6,9 +6,14 @@ on:
         description: 'Select environment'
         type: environment
         required: true
+    secrets:
+      #AWS_ACCESS_KEY_ID:
+      #  required: true
+      #AWS_SECRET_ACCESS_KEY:
+      #  required: true
     
 concurrency:
-  group: ${{ inputs.environment }}
+  group: $inputs.environment
   cancel-in-progress: false
   
 permissions:
@@ -23,6 +28,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Connect to "
-        run: "echo 'test' "
+        run: "echo 'test' && echo $inputs.environment" 
   
       
