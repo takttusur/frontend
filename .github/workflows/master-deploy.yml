@@ -49,7 +49,6 @@ env:
 jobs:
   deploy:
     runs-on: debian-latest
-    using: composite
     shell: bash
     steps:
         - name: Using VPN connection
