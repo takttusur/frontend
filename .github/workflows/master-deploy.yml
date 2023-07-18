@@ -48,7 +48,7 @@ env:
 
 jobs:
   deploy:
-    runs-on: debian-latest
+    runs-on: ubuntu-latest
     steps:
         - name: Using VPN connection
           run: |
