@@ -1,0 +1,28 @@
+name: "Deploy latest version"
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Select environment'
+        type: environment
+        required: true
+    
+concurrency:
+  group: ${{ inputs.environment }}
+  cancel-in-progress: false
+  
+permissions:
+  deployments: read|write
+  
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  connect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Connect to "
+        run: "echo 'test' "
+  
+      
