@@ -12,7 +12,7 @@ function App() {
       <h1>Туристско-альпинистский клуб ТУСУРа</h1>
       <p>Скоро тут будет сайт</p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
