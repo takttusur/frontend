@@ -1,3 +1,12 @@
+---
+name: New feature
+about: Задание на новую функциональность
+title: ""
+labels: enhancement
+assignees: ''
+
+---
+
 # Feature name
 
 Как ...(пользователь) я хочу ...
