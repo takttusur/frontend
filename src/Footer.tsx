@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { Text, Box, Center } from '@chakra-ui/react';
 
 export default function WallpaperCarousel() {
