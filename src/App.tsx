@@ -1,18 +1,23 @@
-import taktLogo from './assets/takt.svg';
 import './App.css';
+import MainMenu, {EQUIPMENT_SECTION, NEWS_SECTION, EVENTS_SECTION} from "./components/Navigation/MainMenu";
+import WallpaperCarousel from "./components/WallpaperCarousel";
+import CurrentEvents from "./components/CurrentEvents";
+import Equipment from "./components/Equipment";
+import News from "./components/News";
+import Footer from "./components/Footer";
 
-function App() {
-  return (
-    <>
-      <div>
-        <a href="https://vk.com/takt_tusur" target="_blank">
-          <img src={taktLogo} className="logo" alt="Перейти на страницу в VK" />
-        </a>
-      </div>
-      <h1>Туристско-альпинистский клуб ТУСУРа</h1>
-      <p>Скоро тут будет сайт</p>
-    </>
-  );
+export default function App() {
+    return (
+        <>
+            <MainMenu/>
+            <WallpaperCarousel/>
+            <a id={EVENTS_SECTION}/>
+            <CurrentEvents/>
+            <a id={EQUIPMENT_SECTION}/>
+            <Equipment/>
+            <a id={NEWS_SECTION}/>
+            <News/>
+            <Footer/>
+        </>
+    );
 }
-
-export default App;
