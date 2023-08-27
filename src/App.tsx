@@ -1,26 +1,23 @@
-import { lazy } from 'react';
 import './App.css';
-
-import MainMenu from './MainMenu';
-import CurrentEvents from './CurrentEvents';
-import WallpaperCarousel from './WallpaperCarousel';
-import Equipment from './Equipment';
-import Footer from './Footer';
-
-const News = lazy(() => import( './News' ));
+import MainMenu, {EQUIPMENT_SECTION, NEWS_SECTION, EVENTS_SECTION} from "./components/Navigation/MainMenu";
+import WallpaperCarousel from "./components/WallpaperCarousel";
+import CurrentEvents from "./components/CurrentEvents";
+import Equipment from "./components/Equipment";
+import News from "./components/News";
+import Footer from "./components/Footer";
 
 export default function App() {
-  return (
-    <>
-      <MainMenu />
-      <WallpaperCarousel />
-      <a id='События' />
-      <CurrentEvents />
-      <a id='Склад' />
-      <Equipment />
-      <a id='Новости' />
-      <News />
-      <Footer />
-    </>
-  );
+    return (
+        <>
+            <MainMenu/>
+            <WallpaperCarousel/>
+            <a id={EVENTS_SECTION}/>
+            <CurrentEvents/>
+            <a id={EQUIPMENT_SECTION}/>
+            <Equipment/>
+            <a id={NEWS_SECTION}/>
+            <News/>
+            <Footer/>
+        </>
+    );
 }

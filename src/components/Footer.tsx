@@ -1,6 +1,6 @@
 import { Text, Box, Center } from '@chakra-ui/react';
 
-export default function WallpaperCarousel() {
+export default function Footer() {
   return (
     <>
         <Box bg='black' h={100}>
@@ -13,4 +13,3 @@ export default function WallpaperCarousel() {
     </>
   );
 }
-//href="https://vk.com/takt_tusur"
