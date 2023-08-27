@@ -1,19 +1,22 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import { lazy } from 'react';
 import { Image, Flex, Box, IconButton, Stack, useColorModeValue, HStack, useDisclosure } from '@chakra-ui/react';
 import taktLogo from './assets/takt.svg';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import './App.css';
-import News from './News';
+import CurrentEvents from './CurrentEvents';
 import WallpaperCarousel from './WallpaperCarousel';
+import Equipment from './Equipment';
+import Footer from './Footer';
+
+const News = lazy(() => import( './News' ));
 
 interface Props {
-  children: React.ReactNode
+  children: string;
 }
 
 const NavLink = (props: Props) => {
-  const { children } = props;
-
   return (
     <Box
       as="a"
@@ -24,8 +27,8 @@ const NavLink = (props: Props) => {
         textDecoration: 'none',
         bg: useColorModeValue('gray.200', 'gray.700'),
       }}
-      href={'#'}>
-      {children}
+      href={`#${props.children}`}>
+      {props.children}
     </Box>
   );
 };
@@ -36,7 +39,7 @@ export default function MainMenu() {
   
   return (
     <>
-      <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
+      <Box w='100%' position='fixed' bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <IconButton
             size={'md'}
@@ -52,7 +55,7 @@ export default function MainMenu() {
                 <NavLink key={link}>{link}</NavLink>
               ))}
             </HStack>
-          </HStack>          
+          </HStack>
         </Flex>
 
         {isOpen ? (
@@ -65,10 +68,16 @@ export default function MainMenu() {
           </Box>
         ) : null}
       </Box>
+      <Box h={16} />
 
-      <WallpaperCarousel></WallpaperCarousel>
-      <News></News>
+      <WallpaperCarousel />
+      <a id='События' />
+      <CurrentEvents />
+      <a id='Склад' />
+      <Equipment />
+      <a id='Новости' />
+      <News />
+      <Footer />
     </>
   );
 }
-//href="https://vk.com/takt_tusur"

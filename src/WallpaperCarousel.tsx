@@ -1,15 +1,15 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { Text, Box, useColorModeValue, Flex, Center } from '@chakra-ui/react';
+import { Text, Box, useColorModeValue, Center } from '@chakra-ui/react';
 
 export default function WallpaperCarousel() {
   return (
     <>
         <Box borderWidth='1px' borderColor='black' bg={useColorModeValue('white', 'gray.200')} h={400}>
-          <Flex>
-            <Center>
-              <Text> WallpaperCarousel </Text>
-            </Center>
-          </Flex>
+          <Center>
+            <Box display="flex" alignItems="center" h={400}>
+              <Text> WallpaperCarousel </Text>  
+            </Box>
+          </Center>
         </Box>
     </>
   );
