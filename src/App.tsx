@@ -1,13 +1,13 @@
 import './App.css';
-import MainMenu, {EQUIPMENT_SECTION, NEWS_SECTION, EVENTS_SECTION} from "./components/Navigation/MainMenu";
-import WallpaperCarousel from "./components/WallpaperCarousel";
-import CurrentEvents from "./components/CurrentEvents";
-import Equipment from "./components/Equipment";
-import News from "./components/News";
-import Footer from "./components/Footer";
+import MainMenu, { EQUIPMENT_SECTION, NEWS_SECTION, EVENTS_SECTION } from './components/Navigation/MainMenu';
+import WallpaperCarousel from './components/WallpaperCarousel';
+import CurrentEvents from './components/CurrentEvents/CurrentEventsWidget';
+import Equipment from './components/Equipment/EquipmentWidget';
+import News from './components/News/NewsWidget';
+import Footer from './components/Footer';
 
 export default function App() {
-    return (
+  return (
         <>
             <MainMenu/>
             <WallpaperCarousel/>
@@ -19,5 +19,5 @@ export default function App() {
             <News/>
             <Footer/>
         </>
-    );
+  );
 }
