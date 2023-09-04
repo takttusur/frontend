@@ -8,18 +8,15 @@ export default function NewsWidget() {
               <Box position='relative' w='100%' h={398} bg='gray'>
                 <Text position='absolute' top='50%' w='100%' textAlign='center'> News </Text>
                 <LinkBox 
-                  position='absolute' bottom='0%' right='0%' display="flex" alignItems="center" w='fit-content' h={50}
-                  textDecorationLine='underline' 
-                  fontWeight={500}                   
-                  px={2}
-                  py={1}
-                  rounded={'md'}
-                  _hover={{
-                    textDecoration: 'none',
-                    bg: useColorModeValue('gray.200', 'gray.700'),
-                  }}>
-                  <LinkOverlay href = '/Equipment' />
-                  Подробнее
+                  position='absolute' bottom='0%' right='0%' w='fit-content'
+                  textDecorationLine='underline'      
+                  fontWeight={500}              
+                  pb={2}
+                  pr={2}                  
+                  >
+                  <LinkOverlay href = '/News'>
+                    <Text> Подробнее </Text>
+                  </LinkOverlay>                  
                 </LinkBox>            
               </Box>                   
             </Box>
