@@ -8,18 +8,15 @@ export default function CurrentEventsWidget() {
               <Box position='relative' w='100%' h={398} bg='gray'>
                 <Text position='absolute' top='50%' w='100%' textAlign='center'> CurrentEvents </Text>
                 <LinkBox 
-                  position='absolute' bottom='0%' right='0%' display="flex" alignItems="center" w='fit-content' h={50}
+                  position='absolute' bottom='0%' right='0%' w='fit-content'
                   textDecorationLine='underline'      
                   fontWeight={500}              
-                  px={2}
-                  py={1}
-                  rounded={'md'}
-                  _hover={{
-                    textDecoration: 'none',
-                    bg: useColorModeValue('gray.200', 'gray.700'),
-                  }}>
-                  <LinkOverlay href = '/Equipment' />
-                  Подробнее
+                  pb={2}
+                  pr={2}                  
+                  >
+                  <LinkOverlay href = '/CurrentEvents'>
+                    <Text> Подробнее </Text>
+                  </LinkOverlay>                  
                 </LinkBox>            
               </Box>                   
             </Box>
