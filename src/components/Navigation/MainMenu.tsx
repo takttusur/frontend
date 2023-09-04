@@ -15,19 +15,10 @@ const EQUIPMENT = {
   label: 'Снаряжение',
   link: 'Equipment',
 };
-const ImgAttributesForMainPage = {
-  href: 'https://vk.com/takt_tusur',
-  title: 'Перейти на страницу клуба в VK',
-};
-const ImgAttributesForOtherPage = {
-  href: '/',
-  title: 'Перейти главную страницу',
-};
 
-export default function MainMenu(props) {
+export default function MainMenu() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const Links = [ EVENTS, EQUIPMENT, NEWS ];
-  const ImgProps = props.page == 'Main' ? ImgAttributesForMainPage : ImgAttributesForOtherPage;
 
   return (
         <>
@@ -41,7 +32,7 @@ export default function MainMenu(props) {
                         onClick={isOpen ? onClose : onOpen}
                     />
                     <HStack spacing={8} alignItems={'center'}>
-                        <Link {...ImgProps}>
+                        <Link  href='/' title='Перейти главную страницу'>
                             <Image src={taktLogo} boxSize='50px'/>
                         </Link>
                         <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }}>
