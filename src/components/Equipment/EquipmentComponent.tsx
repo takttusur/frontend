@@ -1,6 +1,6 @@
 import { Text, Box, useColorModeValue, Center } from '@chakra-ui/react';
 
-export default function Equipment() {
+export default function EquipmentComponent() {
   return (
     <Box borderWidth='1px' borderColor='black' bg={useColorModeValue('gray.200', 'gray.700')} h={400}>
         <Center>
