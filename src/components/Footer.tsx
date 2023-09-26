@@ -1,14 +1,19 @@
-import { Text, Box, Center } from '@chakra-ui/react';
+import { Box, LinkBox, LinkOverlay, Text } from '@chakra-ui/react';
 
 export default function Footer() {
   return (
     <>
-        <Box bg='black' h={100}>
-          <Center>
-            <Box display="flex" alignItems="center" h={100}>
-              <Text textColor='white'> Footer </Text>  
-            </Box>
-          </Center>
+        <Box textColor={'white'} bg='black' h={50} position={'relative'}>
+          <LinkBox
+            position={'absolute'}
+            w={'fit-content'}
+            px={2}
+            py={1}
+            >            
+            <LinkOverlay href='https://vk.com/takt_tusur' title='Перейти на страницу клуба в VK'>
+              <Text textDecorationLine={'underline'} fontSize={20}> Наша группа Вк </Text>
+            </LinkOverlay>
+          </LinkBox>
         </Box>
     </>
   );
