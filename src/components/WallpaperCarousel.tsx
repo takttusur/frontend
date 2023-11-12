@@ -1,17 +1,16 @@
-import { Text, Box, useColorModeValue, Center, Flex, Image } from '@chakra-ui/react';
-import React, { useContext, useEffect, useState } from "react";
+import { Text, Box, Flex, Image } from '@chakra-ui/react';
+import { useEffect, useState } from "react";
+import "./WallpaperCarousel.css";
 
-export default function WallpaperCarousel() {
-  const slides = [
-    {
-      img: "https://sun9-78.userapi.com/impg/LjIeEz0ME5wW7IjXNinsEstnKlW1wWQfSyJ_uA/IaYGsj-CoZY.jpg?size=2560x1706&quality=95&sign=bdd53cb3634957565062b067d8a65faf&type=album",
-    },
-    {
-      img: "https://sun9-52.userapi.com/impg/nqVab7xYhP-3KIEKUJAy7hxAm4rUoxWp3Z3_pA/oLYVoglGJW8.jpg?size=1600x1158&quality=95&sign=96d93862fab54114f7cd76a7af0d2ee4&type=album",
-    },
-  ];
+interface IWallpaperCaruselProps{
+  slides:string[]
+}
+
+export default function WallpaperCarousel(props:IWallpaperCaruselProps) {
+  
   const [currentSlide, setCurrentSlide] = useState(0);
-  const slidesCount = slides.length;
+
+  const slidesCount = props.slides.length;
   const carouselStyle = {
     transition: "all .5s",
     ml: `-${currentSlide * 100}%`,// мах ширина
@@ -35,21 +34,18 @@ export default function WallpaperCarousel() {
   return (
     <Flex
       w="full"
-      bg="#edf3f8"
-      _dark={{
-        bg: "#3e3e3e",
-      }}
-      p={10}
       alignItems="center"
       justifyContent="center"
+      overflow="hidden"
     >
-      <Flex w="auto"  >
+      <Flex w="auto">
         <Flex pos="relative" w="full" {...carouselStyle}>
-          {slides.map((slide, sid) => (
+          {props.slides.map((slide, sid) => (
             <Box key={`slide-${sid}`} flex="none" boxSize="full" shadow="md" height={{
               base: "100%", // 0-48em
               md: "50%", // 48em-80em,
-              xl: "25%", // 80em+
+              lg: "40%", // 48em-80em,
+               // 80em+
             }}>
               <Text
                 color="white"
@@ -57,18 +53,20 @@ export default function WallpaperCarousel() {
                 p="8px 12px"
                 pos="absolute"
                 top="0"
-                whiteSpace="nowrap"
-              >
+                whiteSpace="nowrap">
                 {sid + 1} / {slidesCount}
               </Text>
-              <Image
-                src={slide.img}
+              <Image 
+                className='dark-image'
+                src={slide}
                 alt="carousel image"
                 boxSize="full"
                 align={"center"}
                 fit={"cover"}
                 backgroundSize="cover"
+                
               />
+
             </Box>
           ))}
         </Flex>
@@ -79,5 +77,3 @@ export default function WallpaperCarousel() {
 }
 
 
-// гайт на затемнение в дисе
-// 
