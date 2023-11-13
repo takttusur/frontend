@@ -18,10 +18,16 @@ const RecipeTableComponent = () => {
   const [recipes, setRecipes] = useState(data.recipes);
 
   const editRecipe = (recipeId) => {
-
+    const recipeToEdit = recipes.find((recipe) => recipe.id === recipeId);
+    if (recipeToEdit) {
+      openRecipeEditor(recipeToEdit);
+    } else {
+    
+    }
   };
+  
 
-  const deleteRecipe = (recipeId) => {
+  const deleteRecipe = (recipeId: number) => {
 
   const updatedRecipes = recipes.filter((recipe) => recipe.id !== recipeId);
   
