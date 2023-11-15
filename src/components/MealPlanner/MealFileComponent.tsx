@@ -43,6 +43,7 @@ function MealFileComponent({ data, onUpdate }) {
     <div>
       <input type="file" accept=".json" onChange={handleLoad} style={{ display: 'none' }} id="fileInput" />
       <label htmlFor="fileInput">
+  
         <Button as="span" mr={2}>
           Load
         </Button>

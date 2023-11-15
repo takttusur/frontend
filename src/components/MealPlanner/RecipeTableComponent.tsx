@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Table,
   Thead,
@@ -7,12 +7,18 @@ import {
   Th,
   Td,
   IconButton,
+  Collapse,
+  Box,
+  Text,
+  Button,
 } from '@chakra-ui/react';
-import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
+import { EditIcon, DeleteIcon, ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons';
 
 const RecipeTableComponent = ({ recipes, updateRecipes }) => {
-  const editRecipe = (recipeId) => {
-    // Логику редактирования рецепта не написал
+  const [openRecipeId, setOpenRecipeId] = useState(null);
+
+  const showIngredients = (recipeId) => {
+    setOpenRecipeId(openRecipeId === recipeId ? null : recipeId);
   };
 
   const deleteRecipe = (recipeId) => {
@@ -32,25 +38,44 @@ const RecipeTableComponent = ({ recipes, updateRecipes }) => {
       </Thead>
       <Tbody>
         {recipes.map((recipe) => (
-          <Tr key={recipe.id}>
-            <Td>{recipe.name}</Td>
-            <Td>{recipe.suggestedFor.join(', ')}</Td>
-            <Td>{recipe.dishType}</Td>
-            <Td>
-              <IconButton
-                aria-label="Edit recipe"
-                icon={<EditIcon />}
-                onClick={() => editRecipe(recipe.id)}
-                colorScheme="teal"
-              />
-              <IconButton
-                aria-label="Delete recipe"
-                icon={<DeleteIcon />}
-                onClick={() => deleteRecipe(recipe.id)}
-                colorScheme="red"
-              />
-            </Td>
-          </Tr>
+          <React.Fragment key={recipe.id}>
+            <Tr>
+              <Td>{recipe.name}</Td>
+              <Td>{recipe.suggestedFor.join(', ')}</Td>
+              <Td>{recipe.dishType}</Td>
+              <Td>
+                <IconButton
+                  aria-label={openRecipeId === recipe.id ? "Hide Ingredients" : "Show Ingredients"}
+                  onClick={() => showIngredients(recipe.id)}
+                  colorScheme="teal"
+                  icon={openRecipeId === recipe.id ? <ChevronUpIcon /> : <ChevronDownIcon />}
+                />
+                <IconButton
+                  aria-label="Delete recipe"
+                  icon={<DeleteIcon />}
+                  onClick={() => deleteRecipe(recipe.id)}
+                  colorScheme="red"
+                  ml="2"
+                />
+              </Td>
+            </Tr>
+            <Tr>
+              <Td colSpan={4}>
+                <Collapse in={openRecipeId === recipe.id}>
+                  <Box p="4">
+                    <Text fontWeight="bold">Ингредиенты:</Text>
+                    <ul>
+                      {recipe.ingredients.map((ingredient, index) => (
+                        <li key={index}>
+                          {ingredient.name}: {ingredient.Qty} {ingredient.Units}
+                        </li>
+                      ))}
+                    </ul>
+                  </Box>
+                </Collapse>
+              </Td>
+            </Tr>
+          </React.Fragment>
         ))}
       </Tbody>
     </Table>
