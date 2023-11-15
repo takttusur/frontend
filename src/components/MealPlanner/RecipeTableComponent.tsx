@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   Table,
   Thead,
@@ -7,35 +7,17 @@ import {
   Th,
   Td,
   IconButton,
-  Text,
-  Box,
-  Button,
 } from '@chakra-ui/react';
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
-import data from './Data/recipes.json';
 
-const RecipeTableComponent = () => {
-  const [recipes, setRecipes] = useState(data.recipes);
-
+const RecipeTableComponent = ({ recipes, updateRecipes }) => {
   const editRecipe = (recipeId) => {
-    const recipeToEdit = recipes.find((recipe) => recipe.id === recipeId);
-    if (recipeToEdit) {
-      openRecipeEditor(recipeToEdit);
-    } else {
-    
-    }
+    // Логику редактирования рецепта не написал
   };
-  
 
-  const deleteRecipe = (recipeId: number) => {
-
-  const updatedRecipes = recipes.filter((recipe) => recipe.id !== recipeId);
-  
-
-  setRecipes(updatedRecipes);
-
-  const updatedData = { ...data, recipes: updatedRecipes };
-
+  const deleteRecipe = (recipeId) => {
+    const updatedRecipes = recipes.filter((recipe) => recipe.id !== recipeId);
+    updateRecipes(updatedRecipes);
   };
 
   return (

@@ -6,7 +6,6 @@ import {
   Textarea,
   Button,
   Checkbox,
-  CheckboxGroup,
   Radio,
   RadioGroup,
   VStack,
@@ -14,8 +13,13 @@ import {
   Select,
 } from '@chakra-ui/react';
 
-const RecipeEditorComponent = () => {
+const RecipeEditorComponent = ({ recipes, updateRecipes }) => {
+  const generateRecipeId = () => {
+    return new Date().getTime(); 
+  };
+
   const [newRecipe, setNewRecipe] = useState({
+    id: generateRecipeId(), 
     name: '',
     suggestedFor: [],
     dishType: 'Starter',
@@ -23,7 +27,7 @@ const RecipeEditorComponent = () => {
     cookingGuide: '',
   });
 
-  const handleInputChange = (e, index) => {
+  const handleInputChange = (e, index : number) => {
     const { name, value } = e.target;
     if (index === -1) {
       setNewRecipe({ ...newRecipe, [name]: value });
@@ -41,14 +45,10 @@ const RecipeEditorComponent = () => {
     });
   };
 
-  const addRecipe = (recipe) => {
-    // Placeholder for your addRecipe logic. Replace this with your actual implementation.
-    console.log('Recipe added:', recipe);
-  };
-
   const handleSaveRecipe = () => {
-    addRecipe(newRecipe);
+    updateRecipes((prevRecipes) => [...prevRecipes, newRecipe]);
     setNewRecipe({
+      id: generateRecipeId(),
       name: '',
       suggestedFor: [],
       dishType: 'Starter',
@@ -69,12 +69,32 @@ const RecipeEditorComponent = () => {
         placeholder="Recipe Name"
         mb={2}
       />
-      <CheckboxGroup name="suggestedFor" value={newRecipe.suggestedFor} onChange={(value) => setNewRecipe({ ...newRecipe, suggestedFor: value })}>
-        <Checkbox value="Breakfast">Завтрак</Checkbox>
-        <Checkbox value="Lunch">Обед</Checkbox>
-        <Checkbox value="Dinner">Ужин</Checkbox>
-      </CheckboxGroup>
-      <RadioGroup name="dishType" value={newRecipe.dishType} onChange={(value) => setNewRecipe({ ...newRecipe, dishType: value })}>
+      <Checkbox
+        value="Breakfast"
+        isChecked={newRecipe.suggestedFor.includes('Breakfast')}
+        onChange={() => handleInputChange({ target: { name: 'suggestedFor', value: ['Breakfast'] } }, -1)}
+      >
+        Завтрак
+      </Checkbox>
+      <Checkbox
+        value="Lunch"
+        isChecked={newRecipe.suggestedFor.includes('Lunch')}
+        onChange={() => handleInputChange({ target: { name: 'suggestedFor', value: ['Lunch'] } }, -1)}
+      >
+        Обед
+      </Checkbox>
+      <Checkbox
+        value="Dinner"
+        isChecked={newRecipe.suggestedFor.includes('Dinner')}
+        onChange={() => handleInputChange({ target: { name: 'suggestedFor', value: ['Dinner'] } }, -1)}
+      >
+        Ужин
+      </Checkbox>
+      <RadioGroup
+        name="dishType"
+        value={newRecipe.dishType}
+        onChange={(value) => setNewRecipe({ ...newRecipe, dishType: value })}
+      >
         <VStack align="start" spacing={1}>
           <Radio value="Starter">Starter</Radio>
           <Radio value="Main dish">Main dish</Radio>
@@ -101,7 +121,7 @@ const RecipeEditorComponent = () => {
             onChange={(e) => handleInputChange(e, index)}
             placeholder="Quantity"
           />
-          <Select 
+          <Select
             name="Units"
             value={ingredient.Units}
             onChange={(e) => handleInputChange(e, index)}
