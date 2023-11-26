@@ -13,7 +13,22 @@ import {
   Select,
 } from '@chakra-ui/react';
 
-const RecipeEditorComponent = ({ recipes, updateRecipes }) => {
+import { Recipe,DishType,EatingTimes  } from './Data/Recipe';
+
+
+interface RecipeTableComponentProps {
+  recipes: Recipe[];
+  updateRecipes: (recipe: Recipe[]) => void;
+}
+
+
+
+const RecipeEditorComponent = (props: RecipeTableComponentProps ) => {
+  const {
+    recipes,
+    updateRecipes,
+  } = props
+ 
   const generateRecipeId = () => {
     return new Date().getTime(); 
   };
@@ -27,8 +42,7 @@ const RecipeEditorComponent = ({ recipes, updateRecipes }) => {
     cookingGuide: '',
   });
 
-  const handleInputChange = (e, index : number) => {
-    const { name, value } = e.target;
+  const handleRecipeChange = (name: keyof typeof newRecipe, value: any, index: number = -1) => {
     if (index === -1) {
       setNewRecipe({ ...newRecipe, [name]: value });
     } else {
@@ -37,6 +51,12 @@ const RecipeEditorComponent = ({ recipes, updateRecipes }) => {
       setNewRecipe({ ...newRecipe, ingredients: updatedIngredients });
     }
   };
+  
+  const handleInputChange = (e, index: number) => {
+    const { name, value } = e.target;
+    handleRecipeChange(name, value, index);
+  };
+  
 
   const handleAddIngredient = () => {
     setNewRecipe({
@@ -44,6 +64,16 @@ const RecipeEditorComponent = ({ recipes, updateRecipes }) => {
       ingredients: [...newRecipe.ingredients, { name: '', Qty: 0, Units: 'Gram' }],
     });
   };
+
+  const handleCheckboxChange = (value: EatingTimes) => {
+    const updatedSuggestedFor = newRecipe.suggestedFor.includes(value)
+      ? newRecipe.suggestedFor.filter(time => time !== value)
+      : [...newRecipe.suggestedFor, value];
+  
+    setNewRecipe({ ...newRecipe, suggestedFor: updatedSuggestedFor });
+  };
+  
+  
 
   const handleSaveRecipe = () => {
     updateRecipes((prevRecipes) => [...prevRecipes, newRecipe]);
@@ -57,6 +87,9 @@ const RecipeEditorComponent = ({ recipes, updateRecipes }) => {
     });
   };
 
+
+  
+
   return (
     <Box>
       <Heading as="h2" size="lg" mb={4}>
@@ -69,40 +102,40 @@ const RecipeEditorComponent = ({ recipes, updateRecipes }) => {
         placeholder="Recipe Name"
         mb={2}
       />
-      <Checkbox
-        value="Breakfast"
-        isChecked={newRecipe.suggestedFor.includes('Breakfast')}
-        onChange={() => handleInputChange({ target: { name: 'suggestedFor', value: ['Breakfast'] } }, -1)}
-      >
-        Завтрак
-      </Checkbox>
-      <Checkbox
-        value="Lunch"
-        isChecked={newRecipe.suggestedFor.includes('Lunch')}
-        onChange={() => handleInputChange({ target: { name: 'suggestedFor', value: ['Lunch'] } }, -1)}
-      >
-        Обед
-      </Checkbox>
-      <Checkbox
-        value="Dinner"
-        isChecked={newRecipe.suggestedFor.includes('Dinner')}
-        onChange={() => handleInputChange({ target: { name: 'suggestedFor', value: ['Dinner'] } }, -1)}
-      >
-        Ужин
-      </Checkbox>
-      <RadioGroup
-        name="dishType"
-        value={newRecipe.dishType}
-        onChange={(value) => setNewRecipe({ ...newRecipe, dishType: value })}
-      >
-        <VStack align="start" spacing={1}>
-          <Radio value="Starter">Starter</Radio>
-          <Radio value="Main dish">Main dish</Radio>
-          <Radio value="Snack">Snack</Radio>
-          <Radio value="Dessert">Dessert</Radio>
-          <Radio value="Beverages">Beverages</Radio>
-        </VStack>
-      </RadioGroup>
+        <Checkbox
+  isChecked={newRecipe.suggestedFor.includes(EatingTimes.BREAKFAST)}
+  onChange={() => handleCheckboxChange(EatingTimes.BREAKFAST)}
+>
+  Завтрак
+</Checkbox>
+
+<Checkbox
+  isChecked={newRecipe.suggestedFor.includes(EatingTimes.LUNCH)}
+  onChange={() => handleCheckboxChange(EatingTimes.LUNCH)}
+>
+  Обед
+</Checkbox>
+
+<Checkbox
+  isChecked={newRecipe.suggestedFor.includes(EatingTimes.DINNER)}
+  onChange={() => handleCheckboxChange(EatingTimes.DINNER)}
+>
+  Ужин
+</Checkbox>
+                <RadioGroup
+            name="dishType"
+            value={newRecipe.dishType}
+            onChange={(value) => setNewRecipe({ ...newRecipe, dishType: value as DishType })}
+          >
+  <VStack align="start" spacing={1}>
+    <Radio value={DishType.STARTER}>Starter</Radio>
+    <Radio value={DishType.MAINDISH}>Main dish</Radio>
+    <Radio value={DishType.SNACK}>Snack</Radio>
+    <Radio value={DishType.DESSERT}>Dessert</Radio>
+    <Radio value={DishType.BEVERAGES}>Beverages</Radio>
+  </VStack>
+</RadioGroup>
+
       <Heading as="h3" size="md" my={2}>
         Ингредиенты
       </Heading>

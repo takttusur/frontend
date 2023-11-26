@@ -12,17 +12,28 @@ import {
   Text,
   Button,
 } from '@chakra-ui/react';
-import { EditIcon, DeleteIcon, ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons';
+import { DeleteIcon, ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons';
+import { Recipe } from './Data/Recipe';
 
-const RecipeTableComponent = ({ recipes, updateRecipes }) => {
-  const [openRecipeId, setOpenRecipeId] = useState(null);
+interface RecipeTableComponentProps {
+  recipes: Recipe[];
+  updateRecipes: (recipe: Recipe[]) => void;
+}
 
-  const showIngredients = (recipeId) => {
-    setOpenRecipeId(openRecipeId === recipeId ? null : recipeId);
+const RecipeTableComponent = (props: RecipeTableComponentProps) => {
+  const {
+    recipes,
+    updateRecipes,
+  } = props
+  const [openRecipeId, setOpenRecipeId] = useState<number | null>(null);
+
+  const showIngredients = (recipeId:number) => {
+    setOpenRecipeId((prev) => (prev === recipeId ? null : recipeId));
   };
+  
 
-  const deleteRecipe = (recipeId) => {
-    const updatedRecipes = recipes.filter((recipe) => recipe.id !== recipeId);
+  const deleteRecipe = (recipeId:number) => {
+    const updatedRecipes = recipes.filter((recipe:Recipe) => recipe.id !== recipeId);
     updateRecipes(updatedRecipes);
   };
 
@@ -37,7 +48,7 @@ const RecipeTableComponent = ({ recipes, updateRecipes }) => {
         </Tr>
       </Thead>
       <Tbody>
-        {recipes.map((recipe) => (
+        {recipes.map((recipe:Recipe) => (
           <React.Fragment key={recipe.id}>
             <Tr>
               <Td>{recipe.name}</Td>
@@ -65,11 +76,12 @@ const RecipeTableComponent = ({ recipes, updateRecipes }) => {
                   <Box p="4">
                     <Text fontWeight="bold">Ингредиенты:</Text>
                     <ul>
-                      {recipe.ingredients.map((ingredient, index) => (
-                        <li key={index}>
+                    {recipe.ingredients.map((ingredient) => (
+                       <li key={ingredient.name}>
                           {ingredient.name}: {ingredient.Qty} {ingredient.Units}
-                        </li>
-                      ))}
+                       </li>
+                        ))}
+
                     </ul>
                   </Box>
                 </Collapse>
