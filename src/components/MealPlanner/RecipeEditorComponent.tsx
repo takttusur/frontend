@@ -13,7 +13,7 @@ import {
   Select,
 } from '@chakra-ui/react';
 
-import { Recipe,DishType,EatingTimes  } from './Data/Recipe';
+import { Recipe,DishType,EatingTimes,MeasurementUnits  } from './Data/Recipe';
 
 
 interface RecipeTableComponentProps {
@@ -23,25 +23,29 @@ interface RecipeTableComponentProps {
 
 
 
-const RecipeEditorComponent = (props: RecipeTableComponentProps ) => {
+const RecipeEditorComponent = (props: RecipeTableComponentProps) => {
   const {
     recipes,
     updateRecipes,
   } = props
  
   const generateRecipeId = () => {
-    return new Date().getTime(); 
+
+    const maxId = recipes.reduce((max, recipe) => (recipe.id > max ? recipe.id : max), 0);
+  
+  
+    return maxId + 1;
   };
 
   const [newRecipe, setNewRecipe] = useState({
-    id: generateRecipeId(), 
+    id: generateRecipeId(),
     name: '',
-    suggestedFor: [],
-    dishType: 'Starter',
+    suggestedFor: [] as EatingTimes[],
+    dishType: '',
     ingredients: [{ name: '', Qty: 0, Units: 'Gram' }],
     cookingGuide: '',
   });
-
+  
   const handleRecipeChange = (name: keyof typeof newRecipe, value: any, index: number = -1) => {
     if (index === -1) {
       setNewRecipe({ ...newRecipe, [name]: value });
@@ -52,10 +56,15 @@ const RecipeEditorComponent = (props: RecipeTableComponentProps ) => {
     }
   };
   
-  const handleInputChange = (e, index: number) => {
+  const handleInputChange = <K extends keyof typeof newRecipe>(
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
+    index: number
+  ) => {
     const { name, value } = e.target;
-    handleRecipeChange(name, value, index);
+    handleRecipeChange(name as K, value, index);
   };
+  
+  
   
 
   const handleAddIngredient = () => {
@@ -69,13 +78,50 @@ const RecipeEditorComponent = (props: RecipeTableComponentProps ) => {
     const updatedSuggestedFor = newRecipe.suggestedFor.includes(value)
       ? newRecipe.suggestedFor.filter(time => time !== value)
       : [...newRecipe.suggestedFor, value];
-  
+
     setNewRecipe({ ...newRecipe, suggestedFor: updatedSuggestedFor });
   };
   
-  
 
   const handleSaveRecipe = () => {
+
+    if (!newRecipe.name.trim() || newRecipe.ingredients.length === 0) {
+      alert("Пожалуйста, укажите название рецепта и хотя бы один ингредиент.");
+      return;
+    }
+  
+
+    const ingredientNames = newRecipe.ingredients.map(ingredient => ingredient.name.trim().toLowerCase());
+    const uniqueIngredientNames = new Set(ingredientNames);
+    if (ingredientNames.length !== uniqueIngredientNames.size) {
+      alert("Имена ингредиентов должны быть уникальными.");
+      return;
+    }
+  
+    const invalidQuantity = newRecipe.ingredients.some(ingredient => ingredient.Qty <= 0);
+    if (invalidQuantity) {
+      alert("Количество должно быть положительным числом.");
+      return;
+    }
+
+    if (newRecipe.suggestedFor.length === 0) {
+      alert("Выберите хотя бы одно время приема пищи.");
+      return;
+    }
+
+    if (!newRecipe.dishType) {
+      alert("Выберите тип блюда.");
+      return;
+    }
+  
+
+    const dishNameExists = recipes.some(recipe => recipe.name.trim().toLowerCase() === newRecipe.name.trim().toLowerCase());
+    if (dishNameExists) {
+      alert("Название рецепта должно быть уникальным.");
+      return;
+    }
+  
+
     updateRecipes((prevRecipes) => [...prevRecipes, newRecipe]);
     setNewRecipe({
       id: generateRecipeId(),
@@ -86,7 +132,9 @@ const RecipeEditorComponent = (props: RecipeTableComponentProps ) => {
       cookingGuide: '',
     });
   };
-
+  
+  
+  
 
   
 
@@ -159,13 +207,11 @@ const RecipeEditorComponent = (props: RecipeTableComponentProps ) => {
             value={ingredient.Units}
             onChange={(e) => handleInputChange(e, index)}
           >
-            <option value="Gram">Gram</option>
-            <option value="Kilogram">Kilogram</option>
-            <option value="Units">Units</option>
-            <option value="Millilitres">Millilitres</option>
-            <option value="Litres">Litres</option>
-            <option value="Pack">Pack</option>
-            <option value="Bottle">Bottle</option>
+            {Object.values(MeasurementUnits).map(unit => (
+              <option key={unit} value={unit}>
+                {unit.charAt(0).toUpperCase() + unit.slice(1)} {}
+              </option>
+            ))}
           </Select>
         </HStack>
       ))}

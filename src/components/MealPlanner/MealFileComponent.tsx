@@ -1,8 +1,16 @@
 import React from 'react';
 import { Button } from '@chakra-ui/react';
+import { Recipe } from './Data/Recipe';
 
-function MealFileComponent({ data, onUpdate }) {
-  const handleLoad = (event) => {
+interface MealFileComponentProps {
+  data: Recipe[];
+  onUpdate: (updatedData: Recipe[]) => void; 
+}
+
+function MealFileComponent({ data, onUpdate }: MealFileComponentProps) {
+  
+  
+  const handleLoad = (event: React.ChangeEvent<HTMLInputElement>) => {
     const input = event.target;
 
     if (!input.files || input.files.length === 0) {
@@ -14,12 +22,13 @@ function MealFileComponent({ data, onUpdate }) {
 
     reader.onload = () => {
       try {
-        const loadedData = JSON.parse(reader.result);
+        const loadedData = JSON.parse(reader.result as string);
         onUpdate(loadedData);
       } catch (error) {
         console.error('Error parsing JSON file:', error);
       }
     };
+    
 
     reader.readAsText(file);
   };
@@ -30,8 +39,9 @@ function MealFileComponent({ data, onUpdate }) {
 
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.style = 'display: none';
+    a.style.display = 'none'; 
     a.href = url;
+    
     a.download = 'recipes.json';
     document.body.appendChild(a);
     a.click();

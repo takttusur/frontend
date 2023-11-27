@@ -10,7 +10,6 @@ import {
   Collapse,
   Box,
   Text,
-  Button,
 } from '@chakra-ui/react';
 import { DeleteIcon, ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons';
 import { Recipe } from './Data/Recipe';

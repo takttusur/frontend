@@ -3,6 +3,7 @@ export enum EatingTimes {
   LUNCH = 'lunch',
   DINNER = 'dinner',
 }
+
   
 export enum MeasurementUnits {
   GRAM = 'gram',
@@ -11,7 +12,7 @@ export enum MeasurementUnits {
   MILLILITERS = 'milliliters',
   LITRES = 'litres',
   PACK = 'pack',
-  BOTTLE = 'bottle'
+  BOTTLE = 'bottle',
 }
   
 export enum DishType {
@@ -19,12 +20,12 @@ export enum DishType {
   MAINDISH = 'maindish',
   SNACK = 'snack',
   DESSERT = 'desert',
-  BEVERAGES = 'beverages'
+  BEVERAGES = 'beverages',
 }
   
 export interface Ingredient {
   name: string,
-  Qty: number, // Quantity 
+  Qty: number,
   Units: MeasurementUnits
 }
   
