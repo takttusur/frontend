@@ -23,7 +23,7 @@ const RecipeTableComponent = (props: RecipeTableComponentProps) => {
   const {
     recipes,
     updateRecipes,
-  } = props
+  } = props;
   const [openRecipeId, setOpenRecipeId] = useState<number | null>(null);
 
   const showIngredients = (recipeId:number) => {
@@ -55,7 +55,7 @@ const RecipeTableComponent = (props: RecipeTableComponentProps) => {
               <Td>{recipe.dishType}</Td>
               <Td>
                 <IconButton
-                  aria-label={openRecipeId === recipe.id ? "Hide Ingredients" : "Show Ingredients"}
+                  aria-label={openRecipeId === recipe.id ? 'Hide Ingredients' : 'Show Ingredients'}
                   onClick={() => showIngredients(recipe.id)}
                   colorScheme="teal"
                   icon={openRecipeId === recipe.id ? <ChevronUpIcon /> : <ChevronDownIcon />}
@@ -79,7 +79,7 @@ const RecipeTableComponent = (props: RecipeTableComponentProps) => {
                        <li key={ingredient.name}>
                           {ingredient.name}: {ingredient.Qty} {ingredient.Units}
                        </li>
-                        ))}
+                    ))}
 
                     </ul>
                   </Box>

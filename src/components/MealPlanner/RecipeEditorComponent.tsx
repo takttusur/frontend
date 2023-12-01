@@ -13,7 +13,7 @@ import {
   Select,
 } from '@chakra-ui/react';
 
-import { Recipe,DishType,EatingTimes,MeasurementUnits  } from './Data/Recipe';
+import { Recipe, DishType, EatingTimes, MeasurementUnits, Ingredient  } from './Data/Recipe';
 
 
 interface RecipeTableComponentProps {
@@ -27,7 +27,7 @@ const RecipeEditorComponent = (props: RecipeTableComponentProps) => {
   const {
     recipes,
     updateRecipes,
-  } = props
+  } = props;
  
   const generateRecipeId = () => {
 
@@ -42,15 +42,15 @@ const RecipeEditorComponent = (props: RecipeTableComponentProps) => {
     name: '',
     suggestedFor: [] as EatingTimes[],
     dishType: '',
-    ingredients: [{ name: '', Qty: 0, Units: 'Gram' }],
+    ingredients: [{ name: '', Qty: 0, Units: MeasurementUnits.GRAM }],
     cookingGuide: '',
   });
   
-  const handleRecipeChange = (name: keyof typeof newRecipe, value: any, index: number = -1) => {
+  const handleRecipeChange = (name: keyof typeof newRecipe, value: string, index: number = -1) => {
     if (index === -1) {
       setNewRecipe({ ...newRecipe, [name]: value });
     } else {
-      const updatedIngredients = [...newRecipe.ingredients];
+      const updatedIngredients: Ingredient[] = [...newRecipe.ingredients];
       updatedIngredients[index][name] = value;
       setNewRecipe({ ...newRecipe, ingredients: updatedIngredients });
     }
@@ -58,7 +58,7 @@ const RecipeEditorComponent = (props: RecipeTableComponentProps) => {
   
   const handleInputChange = <K extends keyof typeof newRecipe>(
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
-    index: number
+    index: number,
   ) => {
     const { name, value } = e.target;
     handleRecipeChange(name as K, value, index);
@@ -70,7 +70,7 @@ const RecipeEditorComponent = (props: RecipeTableComponentProps) => {
   const handleAddIngredient = () => {
     setNewRecipe({
       ...newRecipe,
-      ingredients: [...newRecipe.ingredients, { name: '', Qty: 0, Units: 'Gram' }],
+      ingredients: [...newRecipe.ingredients, { name: '', Qty: 0, Units: MeasurementUnits.GRAM }],
     });
   };
 
@@ -86,7 +86,7 @@ const RecipeEditorComponent = (props: RecipeTableComponentProps) => {
   const handleSaveRecipe = () => {
 
     if (!newRecipe.name.trim() || newRecipe.ingredients.length === 0) {
-      alert("Пожалуйста, укажите название рецепта и хотя бы один ингредиент.");
+      alert('Пожалуйста, укажите название рецепта и хотя бы один ингредиент.');
       return;
     }
   
@@ -94,41 +94,42 @@ const RecipeEditorComponent = (props: RecipeTableComponentProps) => {
     const ingredientNames = newRecipe.ingredients.map(ingredient => ingredient.name.trim().toLowerCase());
     const uniqueIngredientNames = new Set(ingredientNames);
     if (ingredientNames.length !== uniqueIngredientNames.size) {
-      alert("Имена ингредиентов должны быть уникальными.");
+      alert('Имена ингредиентов должны быть уникальными.');
       return;
     }
   
     const invalidQuantity = newRecipe.ingredients.some(ingredient => ingredient.Qty <= 0);
     if (invalidQuantity) {
-      alert("Количество должно быть положительным числом.");
+      alert('Количество должно быть положительным числом.');
       return;
     }
 
     if (newRecipe.suggestedFor.length === 0) {
-      alert("Выберите хотя бы одно время приема пищи.");
+      alert('Выберите хотя бы одно время приема пищи.');
       return;
     }
 
     if (!newRecipe.dishType) {
-      alert("Выберите тип блюда.");
+      alert('Выберите тип блюда.');
       return;
     }
   
 
     const dishNameExists = recipes.some(recipe => recipe.name.trim().toLowerCase() === newRecipe.name.trim().toLowerCase());
     if (dishNameExists) {
-      alert("Название рецепта должно быть уникальным.");
+      alert('Название рецепта должно быть уникальным.');
       return;
     }
   
 
-    updateRecipes((prevRecipes) => [...prevRecipes, newRecipe]);
+    updateRecipes((prevRecipes: Recipe) => [...prevRecipes, newRecipe]);
+    
     setNewRecipe({
       id: generateRecipeId(),
       name: '',
       suggestedFor: [],
       dishType: 'Starter',
-      ingredients: [{ name: '', Qty: 0, Units: 'Gram' }],
+      ingredients: [{ name: '', Qty: 0, Units: MeasurementUnits.GRAM }],
       cookingGuide: '',
     });
   };
