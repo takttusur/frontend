@@ -22,7 +22,6 @@ interface RecipeTableComponentProps {
 }
 
 
-
 const RecipeEditorComponent = (props: RecipeTableComponentProps) => {
   const {
     recipes,
@@ -46,7 +45,7 @@ const RecipeEditorComponent = (props: RecipeTableComponentProps) => {
     cookingGuide: '',
   });
   
-  const handleRecipeChange = (name: keyof typeof newRecipe, value: string, index: number = -1) => {
+  const handleRecipeChange = (name: keyof typeof newRecipe, value: any, index: number = -1) => {
     if (index === -1) {
       setNewRecipe({ ...newRecipe, [name]: value });
     } else {
@@ -86,7 +85,7 @@ const RecipeEditorComponent = (props: RecipeTableComponentProps) => {
   const handleSaveRecipe = () => {
 
     if (!newRecipe.name.trim() || newRecipe.ingredients.length === 0) {
-      alert('Пожалуйста, укажите название рецепта и хотя бы один ингредиент.');
+      alert('Укажите название рецепта и хотя бы один ингредиент.');
       return;
     }
   
@@ -122,13 +121,14 @@ const RecipeEditorComponent = (props: RecipeTableComponentProps) => {
     }
   
 
-    updateRecipes((prevRecipes: Recipe) => [...prevRecipes, newRecipe]);
-    
+    updateRecipes((prevRecipes: Recipe[]) => [...prevRecipes, newRecipe]);
+
+
     setNewRecipe({
       id: generateRecipeId(),
       name: '',
       suggestedFor: [],
-      dishType: 'Starter',
+      dishType: DishType.STARTER,
       ingredients: [{ name: '', Qty: 0, Units: MeasurementUnits.GRAM }],
       cookingGuide: '',
     });

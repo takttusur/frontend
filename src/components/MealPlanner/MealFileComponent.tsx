@@ -20,14 +20,24 @@ function MealFileComponent({ data, onUpdate }: MealFileComponentProps) {
     const file = input.files[0];
     const reader = new FileReader();
 
-    reader.onload = () => {
+
+    reader.onload = (fileReaderEvent: ProgressEvent<FileReader>) => {
       try {
-        const loadedData = JSON.parse(reader.result as string);
-        onUpdate(loadedData);
+        const loadedData = JSON.parse(fileReaderEvent.target?.result as string) as Recipe[];
+    
+        if (Array.isArray(loadedData)) {
+          onUpdate(loadedData);
+        } else {
+          console.error('Invalid data format. Expected an array of Recipe.');
+        }
       } catch (error) {
         console.error('Error parsing JSON file:', error);
       }
     };
+    
+    
+    
+    
     
 
     reader.readAsText(file);
