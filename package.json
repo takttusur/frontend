@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc -p tsconfig.prod.json && vite build",
     "test": "NODE_ENV=test vitest run",
-    "lint": "eslint src --ext .js,.jsx,.ts,.tsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint src --ext .js,.jsx,.ts,.tsx --report-unused-disable-directives --max-warnings 0 --fix",
     "preview": "vite preview"
   },
   "dependencies": {
