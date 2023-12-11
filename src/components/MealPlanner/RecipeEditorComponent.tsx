@@ -15,6 +15,14 @@ import {
 
 import { Recipe, DishType, EatingTimes, MeasurementUnits, Ingredient  } from './Data/Recipe';
 
+interface IRecipe {
+  id: number;
+  name: string;
+  suggestedFor: EatingTimes[];
+  dishType: DishType;
+  ingredients: Ingredient[];
+  cookingGuide: string;
+}
 
 interface RecipeTableComponentProps {
   recipes: Recipe[];
@@ -36,16 +44,16 @@ const RecipeEditorComponent = (props: RecipeTableComponentProps) => {
     return maxId + 1;
   };
 
-  const [newRecipe, setNewRecipe] = useState({
+  const [newRecipe, setNewRecipe] = useState<IRecipe>({
     id: generateRecipeId(),
     name: '',
     suggestedFor: [] as EatingTimes[],
-    dishType: '',
+    dishType: DishType.STARTER,
     ingredients: [{ name: '', Qty: 0, Units: MeasurementUnits.GRAM }],
     cookingGuide: '',
   });
   
-  const handleRecipeChange = (name: keyof typeof newRecipe, value: any, index: number = -1) => {
+  const handleRecipeChange = (name: keyof typeof newRecipe, value: string, index: number = -1) => {
     if (index === -1) {
       setNewRecipe({ ...newRecipe, [name]: value });
     } else {
