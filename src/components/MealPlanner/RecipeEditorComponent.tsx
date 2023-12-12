@@ -53,15 +53,21 @@ const RecipeEditorComponent = (props: RecipeTableComponentProps) => {
     cookingGuide: '',
   });
   
-  const handleRecipeChange = (name: keyof typeof newRecipe, value: string, index: number = -1) => {
+  const handleRecipeChange = (fieldName: string, value: string, index: number = -1) => {
     if (index === -1) {
-      setNewRecipe({ ...newRecipe, [name]: value });
+      setNewRecipe((prevRecipe) => ({ ...prevRecipe, [fieldName]: value }));
     } else {
-      const updatedIngredients: Ingredient[] = [...newRecipe.ingredients];
-      updatedIngredients[index][name] = value;
-      setNewRecipe({ ...newRecipe, ingredients: updatedIngredients });
+      setNewRecipe((prevRecipe) => {
+        const updatedIngredients = [...prevRecipe.ingredients];
+        updatedIngredients[index] = {
+          ...updatedIngredients[index],
+          [fieldName as keyof Ingredient]: value,
+        };
+        return { ...prevRecipe, ingredients: updatedIngredients };
+      });
     }
   };
+  
   
   const handleInputChange = <K extends keyof typeof newRecipe>(
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
