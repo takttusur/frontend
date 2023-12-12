@@ -81,11 +81,15 @@ const RecipeEditorComponent = (props: RecipeTableComponentProps) => {
   
 
   const handleAddIngredient = () => {
-    setNewRecipe({
-      ...newRecipe,
-      ingredients: [...newRecipe.ingredients, { name: '', Qty: 0, Units: MeasurementUnits.GRAM }],
-    });
+    setNewRecipe((prev) => ({
+      ...prev,
+      ingredients: [
+        ...prev.ingredients,
+        { name: '', Qty: 0, Units: MeasurementUnits.GRAM },
+      ],
+    }));
   };
+  
 
   const handleCheckboxChange = (value: EatingTimes) => {
     const updatedSuggestedFor = newRecipe.suggestedFor.includes(value)
