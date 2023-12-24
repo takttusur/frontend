@@ -47,7 +47,7 @@ const PlanConfigurationComponent: React.FC<PlanConfigurationComponentProps> = ({
   return (
     <Box>
     <Heading as="h2" size="lg" mb={4}>
-      Plan Configuration
+      Даты поездки  
     </Heading>
     <Input
       type="date"
@@ -65,18 +65,18 @@ const PlanConfigurationComponent: React.FC<PlanConfigurationComponentProps> = ({
     />
     <VStack align="start" spacing={2} mb={2}>
       <Textarea
-        placeholder="Preferred Ingredients (comma-separated)"
+        placeholder="Запрещенные ингредиенты"
         value={config.preferredIngredients.join(', ')}
         onChange={handlePrefferedIngridientsChange}
       />
       <Textarea
-        placeholder="Blacklist Ingredients (comma-separated)"
+        placeholder="Предпочтительные ингредиенты"
         value={config.blacklistIngredients.join(', ')}
         onChange={handleBlackListIngridientsChange}
       />
     </VStack>
     <Heading as="h3" size="md" mb={2}>
-      Number of People
+      Количество людей
     </Heading>
     <Input
       type="number"
@@ -90,7 +90,7 @@ const PlanConfigurationComponent: React.FC<PlanConfigurationComponentProps> = ({
       onChange={handleAddSnacksChange}
       mb={2}
     >
-      Add Snacks
+      Добавить перекус
     </Checkbox>
     {config.addSnacks && (
       <Input

@@ -26,7 +26,6 @@ interface MealPlanBrowserComponentProps {
   recipes: Recipe[];
 }
 
-
 interface Meal {
   day: number;
   suggestedFor: EatingTimes;
@@ -35,7 +34,7 @@ interface Meal {
 }
 
 const generateMealPlan = (planConfig: PlanConfiguration, recipes: Recipe[]): Meal[] => {
-  const { arrivingDate, departureDate, preferredIngredients, blacklistIngredients } = planConfig;
+  const { arrivingDate, departureDate, preferredIngredients, blacklistIngredients, numberOfPeople } = planConfig;
 
   const startDate = new Date(arrivingDate);
   const endDate = new Date(departureDate);
@@ -43,14 +42,14 @@ const generateMealPlan = (planConfig: PlanConfiguration, recipes: Recipe[]): Mea
   const mealPlan: Meal[] = [];
 
   const currentDate = new Date(startDate);
+  let dayNumber = 1;
+  let passCounter = 0; 
+
   while (currentDate <= endDate) {
-    const dayNumber = mealPlan.length + 1;
     const formattedDate = currentDate.toISOString().split('T')[0];
 
     const meals: Meal[] = Object.values(EatingTimes).map((time) => {
       const availableRecipes = recipes.filter((recipe) => {
-
-
         const doesNotIncludeBlacklistIngredients =
           !blacklistIngredients.some((ingredient) => recipe.ingredients.some((i) => i.name.includes(ingredient)));
 
@@ -61,7 +60,7 @@ const generateMealPlan = (planConfig: PlanConfiguration, recipes: Recipe[]): Mea
       const selectedRecipe = availableRecipes[randomIndex];
 
       return {
-        day: dayNumber,
+
         suggestedFor: time,
         date: formattedDate,
         mainDish: selectedRecipe,
@@ -71,6 +70,12 @@ const generateMealPlan = (planConfig: PlanConfiguration, recipes: Recipe[]): Mea
     mealPlan.push(...meals);
 
     currentDate.setDate(currentDate.getDate() + 1);
+    passCounter++;
+
+    if (passCounter === 3) {
+      dayNumber++;
+      passCounter = 0;
+    }
   }
 
   return mealPlan;
@@ -82,16 +87,20 @@ const MealPlanBrowserComponent: React.FC<MealPlanBrowserComponentProps> = (props
 
   const [generatedMealPlan, setGeneratedMealPlan] = useState<Meal[]>([]);
   const [isMenuModalOpen, setMenuModalOpen] = useState(false);
-
-
   const [isButtonClicked, setIsButtonClicked] = useState(false);
+  const [selectedDay, setSelectedDay] = useState<number | null>(null);
 
   useEffect(() => {
-
     if (isButtonClicked) {
       generateAndSetMealPlan();
     }
   }, [isButtonClicked]);
+
+  useEffect(() => {
+    if (selectedDay !== null) {
+      changeRecipe();
+    }
+  }, [selectedDay]);
 
   const generateAndSetMealPlan = () => {
     const newGeneratedMealPlan = generateMealPlan(mealPlan, recipes);
@@ -99,47 +108,70 @@ const MealPlanBrowserComponent: React.FC<MealPlanBrowserComponentProps> = (props
   };
 
   const openMenuModal = () => {
-
     setIsButtonClicked(true);
     setMenuModalOpen(true);
+    setSelectedDay(null);
   };
 
   const closeMenuModal = () => {
     setMenuModalOpen(false);
   };
 
+  const changeRecipe = () => {
+    if (selectedDay !== null) {
+      setGeneratedMealPlan((prevMealPlan) => {
+        const newGeneratedMealPlan = [...prevMealPlan];
+        const randomIndex = Math.floor(Math.random() * recipes.length);
+        newGeneratedMealPlan[selectedDay].mainDish = recipes[randomIndex];
+        return newGeneratedMealPlan;
+      });
+      setSelectedDay(null);
+    }
+  };
+
   return (
     <Box>
-      <Heading>Meal Plan Browser</Heading>
-
+      <Heading>Планировщик меню</Heading>
 
       <Button onClick={openMenuModal} colorScheme="blue" mr={2}>
-        View Generated Meal Plan
+        Сгенерировать меню
       </Button>
 
-      {/* Modal to display the generated meal plan */}
-      <Modal isOpen={isMenuModalOpen} onClose={closeMenuModal}>
+
+      <Modal isOpen={isMenuModalOpen} onClose={closeMenuModal} size="xl">
+
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Generated Meal Plan</ModalHeader>
+          <ModalHeader>Ваш план готов!</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Table>
               <Thead>
                 <Tr>
-                  <Th>Day</Th>
-                  <Th>Suggested For</Th>
-                  <Th>Date</Th>
-                  <Th>Main Dish</Th>
+
+                  <Th>Прием пищи</Th>
+                  <Th>Дата</Th>
+                  <Th>Блюдо</Th>
+                  <Th>Дейсвие</Th>
                 </Tr>
               </Thead>
               <Tbody>
-                {generatedMealPlan.map((meal) => (
-                  <Tr key={meal.day}>
-                    <Td>{meal.day}</Td>
+                {generatedMealPlan.map((meal, index) => (
+                  <Tr key={index}>
+
                     <Td>{meal.suggestedFor}</Td>
                     <Td>{meal.date}</Td>
                     <Td>{meal.mainDish.name}</Td>
+                    <Td>
+                      <Button
+                        colorScheme="green"
+                        size="sm"
+                        onClick={() => setSelectedDay(index)}
+                        disabled={!isButtonClicked}
+                      >
+                        Изменить рецепт
+                      </Button>
+                    </Td>
                   </Tr>
                 ))}
               </Tbody>
@@ -147,7 +179,7 @@ const MealPlanBrowserComponent: React.FC<MealPlanBrowserComponentProps> = (props
           </ModalBody>
           <ModalFooter>
             <Button colorScheme="blue" onClick={closeMenuModal}>
-              Close
+              Закрыть
             </Button>
           </ModalFooter>
         </ModalContent>

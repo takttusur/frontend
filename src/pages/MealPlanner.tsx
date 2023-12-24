@@ -44,7 +44,7 @@ function MealPlanner() {
       <RecipeTableComponent recipes={recipes} updateRecipes={updateRecipes} />
       <RecipeEditorComponent recipes={recipes} updateRecipes={updateRecipes} />
       <PlanConfigurationComponent setConfig={setConfig} config={config} />
-      <MealPlanBrowserComponent configrecipes={recipes as Recipe[]} />
+      <MealPlanBrowserComponent mealPlan={config} recipes={recipes as Recipe[]}  />
     </div>
   );
 }
