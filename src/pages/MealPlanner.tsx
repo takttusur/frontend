@@ -1,21 +1,24 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import MealFileComponent from '../components/MealPlanner/MealFileComponent';
 import RecipeTableComponent from '../components/MealPlanner/RecipeTableComponent';
 import RecipeEditorComponent from '../components/MealPlanner/RecipeEditorComponent';
-import data from '../components/MealPlanner/Data/recipes.json';
 import { Recipe } from '../components/MealPlanner/Data/Recipe';
 
 function MealPlanner() {
-  const [recipes, setRecipes] = useState(data.recipes);
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
 
-  const updateRecipes = (newRecipes: Recipe[]) => {
-    setRecipes(newRecipes);
+  const updateRecipes : (updateFunc:((prevRecipes: Recipe[]) => Recipe[])) => void =  (func) =>  {
+    setRecipes(func);
   };
 
+  const setNewRecipesList = (recipes : Recipe[] ) => {
+    setRecipes(recipes);  
+  };
+  
   return (
     <div>
-      <MealFileComponent data={recipes} onUpdate={updateRecipes} />
-      <RecipeTableComponent recipes={recipes} updateRecipes={updateRecipes} />
+      <MealFileComponent data={recipes} onLoad={setNewRecipesList} />
+      <RecipeTableComponent recipes={recipes} updateRecipes={setNewRecipesList} />
       <RecipeEditorComponent recipes={recipes} updateRecipes={updateRecipes} />
     </div>
   );
