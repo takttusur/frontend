@@ -36,6 +36,7 @@ export default function MainMenu() {
                             <Image src={taktLogo} boxSize='50px'/>
                         </Link>
                         <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }}>
+                            <NavLink label="Группа VK" link="https://vk.com/takt_tusur" isExternal={true}/>
                             {Links.map((link) => (
                                 <NavLink key={link.label} {...{
                                   label: link.label,
