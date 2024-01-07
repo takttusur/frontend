@@ -11,8 +11,8 @@ function MealPlanner() {
     setRecipes(func);
   };
 
-  const setNewRecipesList = (recipes : Recipe[] ) => {
-    setRecipes(recipes);  
+  const setNewRecipesList = (newRecipes : Recipe[] ) => {
+    setRecipes(newRecipes);  
   };
   
   return (
