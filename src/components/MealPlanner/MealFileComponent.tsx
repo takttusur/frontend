@@ -4,10 +4,10 @@ import { Recipe } from './Data/Recipe';
 
 interface MealFileComponentProps {
   data: Recipe[];
-  onUpdate: (updatedData: Recipe[]) => void; 
+  onLoad: (list : Recipe[]) => void;
 }
 
-function MealFileComponent({ data, onUpdate }: MealFileComponentProps) {
+function MealFileComponent({ data, onLoad }: MealFileComponentProps) {
   
   
   const handleLoad = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,10 +23,10 @@ function MealFileComponent({ data, onUpdate }: MealFileComponentProps) {
 
     reader.onload = (fileReaderEvent: ProgressEvent<FileReader>) => {
       try {
-        const loadedData = JSON.parse(fileReaderEvent.target?.result as string) as Recipe[];
+        const loadedData = JSON.parse(fileReaderEvent.target?.result as string) as { recipes: Recipe[] };
     
         if (Array.isArray(loadedData)) {
-          onUpdate(loadedData);
+          onLoad(loadedData.recipes);
         } else {
           console.error('Invalid data format. Expected an array of Recipe.');
         }
@@ -34,12 +34,6 @@ function MealFileComponent({ data, onUpdate }: MealFileComponentProps) {
         console.error('Error parsing JSON file:', error);
       }
     };
-    
-    
-    
-    
-    
-
     reader.readAsText(file);
   };
 

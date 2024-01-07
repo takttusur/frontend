@@ -26,7 +26,7 @@ interface IRecipe {
 
 interface RecipeTableComponentProps {
   recipes: Recipe[];
-  updateRecipes: (recipe: Recipe[]) => void;
+  updateRecipes: (updateFunc:((prevRecipes: Recipe[]) => Recipe[])) => void;
 }
 
 
@@ -139,7 +139,7 @@ const RecipeEditorComponent = (props: RecipeTableComponentProps) => {
     }
   
 
-    updateRecipes((prevRecipes: Recipe[]) => [...prevRecipes, newRecipe]);
+    updateRecipes(prev => [...prev, newRecipe]);
 
 
     setNewRecipe({
