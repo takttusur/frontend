@@ -4,27 +4,24 @@ import {
     CardBody,
     CardFooter,
     Heading,
-    Image,
     LinkOverlay,
     Stack,
     Text,
 } from '@chakra-ui/react'
-import DateService from '../../services/DateService/index.ts'
+import DateService from '../../services/DateService'
 
-interface IArticleBigCardProps {
-    imageUrl?: string
+interface IArticleSmallCardProps {
     text: string
-    goUrl: string
     date: Date
+    goUrl: string
 }
 
-export default function ArticleBigCard(
-    props: IArticleBigCardProps
+export default function ArticleSmallCard(
+    props: IArticleSmallCardProps
 ): JSX.Element {
     return (
         <Card w="md">
             <CardBody>
-                <Image src={props.imageUrl} borderRadius="lg" />
                 <Stack mt="3">
                     <Heading size="xs" textColor="blackAlpha.600">
                         {DateService.understandableDate(props.date)}

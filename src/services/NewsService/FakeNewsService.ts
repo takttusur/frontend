@@ -29,7 +29,7 @@ const url4 = 'https://vk.com/wall-597969_6511'
 const date4 = new Date(2023, 7, 10)
 ///
 const text5 =
-    'рошлые выходные были насыщенными на события: ТАКТовцы успели организовать и посетить Новичковый выезд, ' +
+    'Прошлые выходные были насыщенными на события: ТАКТовцы успели организовать и посетить Новичковый выезд, ' +
     'поучаствовать в Амазоновском марафоне в пеших, вело и мото дистанциях, а также сходить в спелеопоход.\n'
 const url5 = 'https://vk.com/wall-597969_6508'
 const date5 = new Date(2023, 5, 28)
@@ -47,50 +47,61 @@ export class FakeNewsService implements INewsService {
         take: number
     ): Promise<ApiQueryCollectionResult<Article>> {
         const total = 6
-        return new Promise<ApiQueryCollectionResult<Article>>((resolve) => {
-            const oneDayBefore = new Date()
-            oneDayBefore.setDate(oneDayBefore.getDate() - 1)
-            const data: Article[] = [
-                new Article(
-                    text1,
-                    url1,
-                    oneDayBefore,
-                    seasonImageService.getRandomPlaceholderForDate(oneDayBefore)
-                ),
-                new Article(
-                    text2,
-                    url2,
-                    date2,
-                    seasonImageService.getRandomPlaceholderForDate(date2)
-                ),
-                new Article(
-                    text3,
-                    url3,
-                    date3,
-                    seasonImageService.getRandomPlaceholderForDate(date3)
-                ),
-                new Article(
-                    text4,
-                    url4,
-                    date4,
-                    seasonImageService.getRandomPlaceholderForDate(date4)
-                ),
-                new Article(
-                    text5,
-                    url5,
-                    date5,
-                    seasonImageService.getRandomPlaceholderForDate(date5)
-                ),
-                new Article(
-                    text6,
-                    url6,
-                    date6,
-                    seasonImageService.getRandomPlaceholderForDate(date6)
-                ),
-            ]
-            setTimeout(() => {
-                resolve(new ApiQueryCollectionResult(data, take, skip, total))
-            }, REQUEST_DELAY)
-        })
+        return new Promise<ApiQueryCollectionResult<Article>>(
+            (resolve, reject) => {
+                const oneDayBefore = new Date()
+                oneDayBefore.setDate(oneDayBefore.getDate() - 1)
+                const data: Article[] = [
+                    new Article(
+                        text1,
+                        url1,
+                        oneDayBefore,
+                        seasonImageService.getRandomPlaceholderForDate(
+                            oneDayBefore
+                        )
+                    ),
+                    new Article(
+                        text2,
+                        url2,
+                        date2,
+                        seasonImageService.getRandomPlaceholderForDate(date2)
+                    ),
+                    new Article(
+                        text3,
+                        url3,
+                        date3,
+                        seasonImageService.getRandomPlaceholderForDate(date3)
+                    ),
+                    new Article(
+                        text4,
+                        url4,
+                        date4,
+                        seasonImageService.getRandomPlaceholderForDate(date4)
+                    ),
+                    new Article(
+                        text5,
+                        url5,
+                        date5,
+                        seasonImageService.getRandomPlaceholderForDate(date5)
+                    ),
+                    new Article(
+                        text6,
+                        url6,
+                        date6,
+                        seasonImageService.getRandomPlaceholderForDate(date6)
+                    ),
+                ]
+                const rand = Math.floor(Math.random() * 2)
+                if (rand === 1) {
+                    reject()
+                    return
+                }
+                setTimeout(() => {
+                    resolve(
+                        new ApiQueryCollectionResult(data, take, skip, total)
+                    )
+                }, REQUEST_DELAY)
+            }
+        )
     }
 }

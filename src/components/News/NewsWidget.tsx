@@ -1,9 +1,11 @@
-import { Center, Spinner, Wrap, WrapItem } from '@chakra-ui/react'
+import { Button, Center, Spinner } from '@chakra-ui/react'
 import ArticleBigCard from './ArticleBigCard.tsx'
 import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { QueryKeys } from '../../services/NewsService/QueryKeys.ts'
 import NewsService from '../../services/NewsService'
 import { useState } from 'react'
+import ArticleSmallCard from './ArticleSmallCard.tsx'
+import './NewsWidget.css'
 
 interface INewsWidgetState {
     currentPage: number
@@ -18,7 +20,7 @@ const initialState: INewsWidgetState = {
 export default function NewsWidget(): JSX.Element {
     const [state] = useState<INewsWidgetState>(initialState)
 
-    const { isPending, isError, data } = useQuery({
+    const query = useQuery({
         queryKey: [QueryKeys.getArticles, state.currentPage],
         queryFn: () =>
             NewsService.getLatestArticles(
@@ -26,6 +28,8 @@ export default function NewsWidget(): JSX.Element {
                 state.pageSize
             ),
         placeholderData: keepPreviousData,
+        retry: false,
+        refetchOnWindowFocus: false,
     })
 
     const loader = (
@@ -33,30 +37,47 @@ export default function NewsWidget(): JSX.Element {
             <Spinner size="xl" />
         </Center>
     )
-    const result = (): JSX.Element => {
-        if (isError || !data) return <span>Error</span>
 
-        const firstLine = data.data.slice(0, 2)
-        const list = data.data.slice(3)
+    const result = (): JSX.Element => {
+        if (query.isError || !query.data)
+            return (
+                <Center>
+                    <Button
+                        colorScheme="red"
+                        onClick={() => {
+                            query.refetch().then(() => {}, () => {})
+                        }}
+                    >
+                        Произошла ошибка. Попробуем еще раз?
+                    </Button>
+                </Center>
+            )
+
+        const firstLine = query.data.data.slice(0, 2)
+        const list = query.data.data.slice(3)
 
         return (
-            <Wrap align="top" justify="center">
+            <div className="flex-container">
                 {firstLine.map((a, index) => (
-                    <WrapItem key={index}>
-                        <ArticleBigCard
-                            text={a.text}
-                            goUrl={a.originalUrl}
-                            imageUrl={a.imageUrl}
-                            date={a.date}
-                        />
-                    </WrapItem>
+                    <ArticleBigCard
+                        key={index}
+                        text={a.text}
+                        goUrl={a.originalUrl}
+                        imageUrl={a.imageUrl}
+                        date={a.date}
+                    />
                 ))}
                 {list.map((a, index) => (
-                    <WrapItem key={index}>{a.text}</WrapItem>
+                    <ArticleSmallCard
+                        key={index}
+                        text={a.text}
+                        date={a.date}
+                        goUrl={a.originalUrl}
+                    />
                 ))}
-            </Wrap>
+            </div>
         )
     }
 
-    return isPending ? loader : result()
+    return query.isPending ? loader : result()
 }
