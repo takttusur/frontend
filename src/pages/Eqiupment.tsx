@@ -1,9 +1,9 @@
-import EquipmentComponent from '../components/Equipment/EquipmentComponent';
+import EquipmentComponent from '../components/Equipment/EquipmentComponent'
 
-export default function Equipment() {
-  return (
+export default function Equipment(): JSX.Element {
+    return (
         <>
             <EquipmentComponent />
         </>
-  );
+    )
 }
