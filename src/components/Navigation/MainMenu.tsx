@@ -1,66 +1,100 @@
-import { Image, Flex, Box, IconButton, Stack, useColorModeValue, HStack, useDisclosure, Link } from '@chakra-ui/react';
-import taktLogo from '../../assets/takt.svg';
-import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
-import NavLink from './NavLink';
+import {
+    Image,
+    Flex,
+    Box,
+    IconButton,
+    Stack,
+    useColorModeValue,
+    HStack,
+    useDisclosure,
+    Link,
+} from '@chakra-ui/react'
+import taktLogo from '../../assets/takt.svg'
+import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
+import NavLink from './NavLink'
 
 const NEWS = {
-  label: 'Новости',
-  link: 'News',
-};
+    label: 'Новости',
+    link: 'News',
+}
 const EVENTS = {
-  label: 'События',
-  link: 'CurrentEvents',
-};
+    label: 'События',
+    link: 'CurrentEvents',
+}
 const EQUIPMENT = {
-  label: 'Снаряжение',
-  link: 'Equipment',
-};
+    label: 'Снаряжение',
+    link: 'Equipment',
+}
 
 export default function MainMenu() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const Links = [ EVENTS, EQUIPMENT, NEWS ];
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const Links = [EVENTS, EQUIPMENT, NEWS]
 
-  return (
+    return (
         <>
-            <Box w='100%' position='fixed' bg={useColorModeValue('gray.100', 'gray.900')} px={4} zIndex={10}>
-                <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
+            <Box
+                w="100%"
+                position="fixed"
+                bg={useColorModeValue('gray.100', 'gray.900')}
+                px={4}
+                zIndex={10}
+            >
+                <Flex
+                    h={16}
+                    alignItems={'center'}
+                    justifyContent={'space-between'}
+                >
                     <IconButton
                         size={'md'}
-                        icon={isOpen ? <CloseIcon/> : <HamburgerIcon/>}
+                        icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
                         aria-label={'Open Menu'}
                         display={{ md: 'none' }}
                         onClick={isOpen ? onClose : onOpen}
                     />
                     <HStack spacing={8} alignItems={'center'}>
-                        <Link  href='/' title='Перейти главную страницу'>
-                            <Image src={taktLogo} boxSize='50px'/>
+                        <Link href="/" title="Перейти главную страницу">
+                            <Image src={taktLogo} boxSize="50px" />
                         </Link>
-                        <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }}>
-                            <NavLink label="Группа VK" link="https://vk.com/takt_tusur" isExternal={true}/>
+                        <HStack
+                            as={'nav'}
+                            spacing={4}
+                            display={{ base: 'none', md: 'flex' }}
+                        >
+                            <NavLink
+                                label="Группа VK"
+                                link="https://vk.com/takt_tusur"
+                                isExternal={true}
+                            />
                             {Links.map((link) => (
-                                <NavLink key={link.label} {...{
-                                  label: link.label,
-                                  link: link.link,
-                                }} />
+                                <NavLink
+                                    key={link.label}
+                                    {...{
+                                        label: link.label,
+                                        link: link.link,
+                                    }}
+                                />
                             ))}
                         </HStack>
                     </HStack>
                 </Flex>
-  
+
                 {isOpen ? (
                     <Box pb={4} display={{ md: 'none' }}>
                         <Stack as={'nav'} spacing={4}>
                             {Links.map((link) => (
-                                <NavLink key={link.label} {...{
-                                  label: link.label,
-                                  link: link.link,
-                                }} />
+                                <NavLink
+                                    key={link.label}
+                                    {...{
+                                        label: link.label,
+                                        link: link.link,
+                                    }}
+                                />
                             ))}
                         </Stack>
                     </Box>
                 ) : null}
             </Box>
-            <Box h={16}/>
+            <Box h={16} />
         </>
-  );
+    )
 }
