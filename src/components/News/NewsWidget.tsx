@@ -3,7 +3,7 @@ import ArticleBigCard from './ArticleBigCard.tsx'
 import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { QueryKeys } from '../../services/NewsService/QueryKeys.ts'
 import NewsService from '../../services/NewsService'
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 interface INewsWidgetState {
     currentPage: number
