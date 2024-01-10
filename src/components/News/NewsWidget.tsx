@@ -45,7 +45,10 @@ export default function NewsWidget(): JSX.Element {
                     <Button
                         colorScheme="red"
                         onClick={() => {
-                            query.refetch().then(() => {}, () => {})
+                            query.refetch().then(
+                                () => {},
+                                () => {}
+                            )
                         }}
                     >
                         Произошла ошибка. Попробуем еще раз?
