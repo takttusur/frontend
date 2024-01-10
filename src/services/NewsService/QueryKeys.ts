@@ -1,3 +1,3 @@
 export class QueryKeys {
-  public static getArticles : string = 'news_getArticles';
+    public static getArticles: string = 'news_getArticles'
 }

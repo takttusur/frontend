@@ -1,9 +1,9 @@
-import NewsComponent from '../components/News/NewsComponent';
+import NewsComponent from '../components/News/NewsComponent'
 
-export default function News() {
-  return (
+export default function News(): JSX.Element {
+    return (
         <>
             <NewsComponent />
         </>
-  );
+    )
 }

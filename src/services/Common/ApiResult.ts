@@ -1,20 +1,19 @@
-export class ApiResult {
-}
+export class ApiResult {}
 
 export class ApiQueryCollectionResult<T> extends ApiResult {
-  constructor(data: T[], take : number, skip: number, total: number) {
-    super();
-    this.data = data;
-    this.skip = skip;
-    this.take = take;
-    this.total = total;
-  }
-    
-  public data : T[];
+    constructor(data: T[], take: number, skip: number, total: number) {
+        super()
+        this.data = data
+        this.skip = skip
+        this.take = take
+        this.total = total
+    }
 
-  public take : number;
+    public data: T[]
 
-  public skip : number;
+    public take: number
 
-  public total : number;
+    public skip: number
+
+    public total: number
 }

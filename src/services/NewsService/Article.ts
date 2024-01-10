@@ -1,13 +1,13 @@
 export class Article {
-  constructor(text: string, originalUrl: string, imageUrl? : string) {
-    this.imageUrl = imageUrl;
-    this.text = text;
-    this.originalUrl = originalUrl;
-  }
-    
-  public imageUrl? : string;
+    constructor(text: string, originalUrl: string, imageUrl?: string) {
+        this.imageUrl = imageUrl
+        this.text = text
+        this.originalUrl = originalUrl
+    }
 
-  public text : string;
+    public imageUrl?: string
 
-  public originalUrl : string;
+    public text: string
+
+    public originalUrl: string
 }
