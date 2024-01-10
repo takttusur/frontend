@@ -34,7 +34,9 @@ module.exports = {
         'react-hooks/rules-of-hooks': 'error',
         'react-hooks/exhaustive-deps': 'warn',
         'react/prop-types': 'off',
-        'prettier/prettier': [ 'error', { 'endOfLine': 'auto' } ]
+        'prettier/prettier': [ 'error', { 'endOfLine': 'auto' } ],
+        "react/jsx-uses-react": "off",
+        "react/react-in-jsx-scope": "off"
     },
     settings: {
     }
