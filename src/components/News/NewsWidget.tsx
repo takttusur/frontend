@@ -1,4 +1,4 @@
-import { Box, Center, SimpleGrid, Spinner } from '@chakra-ui/react'
+import { Center, Spinner, Wrap, WrapItem } from '@chakra-ui/react'
 import ArticleBigCard from './ArticleBigCard.tsx'
 import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { QueryKeys } from '../../services/NewsService/QueryKeys.ts'
@@ -28,26 +28,35 @@ export default function NewsWidget(): JSX.Element {
         placeholderData: keepPreviousData,
     })
 
-    const loader = <Spinner size="xl" />
-    const result =
-        isError || !data ? (
-            <span>error</span>
-        ) : (
-            <SimpleGrid>
-                {data.data.map((a, index) => (
-                    <ArticleBigCard
-                        key={index}
-                        text={a.text}
-                        goUrl={a.originalUrl}
-                        imageUrl={a.imageUrl}
-                    />
-                ))}
-            </SimpleGrid>
-        )
-
-    return (
-        <Box borderWidth="1px" borderColor="black">
-            <Center>{isPending ? loader : result}</Center>
-        </Box>
+    const loader = (
+        <Center>
+            <Spinner size="xl" />
+        </Center>
     )
+    const result = (): JSX.Element => {
+        if (isError || !data) return <span>Error</span>
+
+        const firstLine = data.data.slice(0, 2)
+        const list = data.data.slice(3)
+
+        return (
+            <Wrap align="top" justify="center">
+                {firstLine.map((a, index) => (
+                    <WrapItem key={index}>
+                        <ArticleBigCard
+                            text={a.text}
+                            goUrl={a.originalUrl}
+                            imageUrl={a.imageUrl}
+                            date={a.date}
+                        />
+                    </WrapItem>
+                ))}
+                {list.map((a, index) => (
+                    <WrapItem key={index}>{a.text}</WrapItem>
+                ))}
+            </Wrap>
+        )
+    }
+
+    return isPending ? loader : result()
 }

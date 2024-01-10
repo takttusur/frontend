@@ -1,8 +1,14 @@
 export class Article {
-    constructor(text: string, originalUrl: string, imageUrl?: string) {
+    constructor(
+        text: string,
+        originalUrl: string,
+        date: Date,
+        imageUrl?: string
+    ) {
         this.imageUrl = imageUrl
         this.text = text
         this.originalUrl = originalUrl
+        this.date = date
     }
 
     public imageUrl?: string
@@ -10,4 +16,6 @@ export class Article {
     public text: string
 
     public originalUrl: string
+
+    public date: Date
 }

@@ -3,16 +3,19 @@ import {
     Card,
     CardBody,
     CardFooter,
+    Heading,
     Image,
     LinkOverlay,
     Stack,
     Text,
 } from '@chakra-ui/react'
+import DateService from '../../services/DateService/index.ts'
 
 interface IArticleBigCardProps {
     imageUrl?: string
     text: string
     goUrl: string
+    date: Date
 }
 
 export default function ArticleBigCard(
@@ -23,6 +26,9 @@ export default function ArticleBigCard(
             <CardBody>
                 <Image src={props.imageUrl} borderRadius="lg" />
                 <Stack mt="3">
+                    <Heading size="xs" textColor="blackAlpha.600">
+                        {DateService.understandableDate(props.date)}
+                    </Heading>
                     <Text>{props.text}</Text>
                 </Stack>
             </CardBody>
