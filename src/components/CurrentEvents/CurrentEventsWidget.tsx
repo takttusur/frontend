@@ -7,7 +7,7 @@ import {
     Center,
 } from '@chakra-ui/react'
 
-export default function CurrentEventsWidget() {
+export default function CurrentEventsWidget(): JSX.Element {
     return (
         <Box
             borderWidth="1px"

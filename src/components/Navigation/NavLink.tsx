@@ -6,7 +6,7 @@ interface INavLinkProps {
     isExternal?: boolean
 }
 
-export default function NavLink(goto: INavLinkProps) {
+export default function NavLink(goto: INavLinkProps): JSX.Element {
     return (
         <LinkBox
             fontWeight={500}

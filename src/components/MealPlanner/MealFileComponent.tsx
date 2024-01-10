@@ -7,8 +7,11 @@ interface MealFileComponentProps {
     onLoad: (list: Recipe[]) => void
 }
 
-function MealFileComponent({ data, onLoad }: MealFileComponentProps) {
-    const handleLoad = (event: React.ChangeEvent<HTMLInputElement>) => {
+function MealFileComponent({
+    data,
+    onLoad,
+}: MealFileComponentProps): JSX.Element {
+    const handleLoad = (event: React.ChangeEvent<HTMLInputElement>): void => {
         const input = event.target
 
         if (!input.files || input.files.length === 0) {
@@ -38,7 +41,7 @@ function MealFileComponent({ data, onLoad }: MealFileComponentProps) {
         reader.readAsText(file)
     }
 
-    const handleSave = () => {
+    const handleSave = (): void => {
         const content = JSON.stringify(data, null, 2)
         const blob = new Blob([content], { type: 'application/json' })
 

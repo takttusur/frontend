@@ -19,15 +19,17 @@ interface RecipeTableComponentProps {
     updateRecipes: (recipe: Recipe[]) => void
 }
 
-const RecipeTableComponent = (props: RecipeTableComponentProps) => {
+const RecipeTableComponent = (
+    props: RecipeTableComponentProps
+): JSX.Element => {
     const { recipes, updateRecipes } = props
     const [openRecipeId, setOpenRecipeId] = useState<number | null>(null)
 
-    const showIngredients = (recipeId: number) => {
+    const showIngredients = (recipeId: number): void => {
         setOpenRecipeId((prev) => (prev === recipeId ? null : recipeId))
     }
 
-    const deleteRecipe = (recipeId: number) => {
+    const deleteRecipe = (recipeId: number): void => {
         const updatedRecipes = recipes.filter(
             (recipe: Recipe) => recipe.id !== recipeId
         )

@@ -9,7 +9,7 @@ import MealPlanner from './pages/MealPlanner'
 
 import { Routes, Route } from 'react-router-dom'
 
-export default function App() {
+export default function App(): JSX.Element {
     return (
         <>
             <MainMenu />

@@ -35,10 +35,12 @@ interface RecipeTableComponentProps {
     updateRecipes: (updateFunc: (prevRecipes: Recipe[]) => Recipe[]) => void
 }
 
-const RecipeEditorComponent = (props: RecipeTableComponentProps) => {
+const RecipeEditorComponent = (
+    props: RecipeTableComponentProps
+): JSX.Element => {
     const { recipes, updateRecipes } = props
 
-    const generateRecipeId = () => {
+    const generateRecipeId = (): number => {
         const maxId = recipes.reduce(
             (max, recipe) => (recipe.id > max ? recipe.id : max),
             0
@@ -60,7 +62,7 @@ const RecipeEditorComponent = (props: RecipeTableComponentProps) => {
         fieldName: string,
         value: string,
         index: number = -1
-    ) => {
+    ): void => {
         if (index === -1) {
             setNewRecipe((prevRecipe) => ({
                 ...prevRecipe,
@@ -83,12 +85,12 @@ const RecipeEditorComponent = (props: RecipeTableComponentProps) => {
             HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
         >,
         index: number
-    ) => {
+    ): void => {
         const { name, value } = e.target
         handleRecipeChange(name as K, value, index)
     }
 
-    const handleAddIngredient = () => {
+    const handleAddIngredient = (): void => {
         setNewRecipe((prev) => ({
             ...prev,
             ingredients: [
@@ -98,7 +100,7 @@ const RecipeEditorComponent = (props: RecipeTableComponentProps) => {
         }))
     }
 
-    const handleCheckboxChange = (value: EatingTimes) => {
+    const handleCheckboxChange = (value: EatingTimes): void => {
         const updatedSuggestedFor = newRecipe.suggestedFor.includes(value)
             ? newRecipe.suggestedFor.filter((time) => time !== value)
             : [...newRecipe.suggestedFor, value]
@@ -106,7 +108,7 @@ const RecipeEditorComponent = (props: RecipeTableComponentProps) => {
         setNewRecipe({ ...newRecipe, suggestedFor: updatedSuggestedFor })
     }
 
-    const handleSaveRecipe = () => {
+    const handleSaveRecipe = (): void => {
         if (!newRecipe.name.trim() || newRecipe.ingredients.length === 0) {
             alert('Укажите название рецепта и хотя бы один ингредиент.')
             return

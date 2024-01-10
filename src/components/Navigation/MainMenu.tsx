@@ -26,7 +26,7 @@ const EQUIPMENT = {
     link: 'Equipment',
 }
 
-export default function MainMenu() {
+export default function MainMenu(): JSX.Element {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const Links = [EVENTS, EQUIPMENT, NEWS]
 

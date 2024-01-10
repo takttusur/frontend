@@ -4,7 +4,7 @@ import RecipeTableComponent from '../components/MealPlanner/RecipeTableComponent
 import RecipeEditorComponent from '../components/MealPlanner/RecipeEditorComponent'
 import { Recipe } from '../components/MealPlanner/Data/Recipe'
 
-function MealPlanner() {
+function MealPlanner(): JSX.Element {
     const [recipes, setRecipes] = useState<Recipe[]>([])
 
     const updateRecipes: (
@@ -13,7 +13,7 @@ function MealPlanner() {
         setRecipes(func)
     }
 
-    const setNewRecipesList = (newRecipes: Recipe[]) => {
+    const setNewRecipesList = (newRecipes: Recipe[]): void => {
         setRecipes(newRecipes)
     }
 

@@ -7,7 +7,7 @@ import {
     Center,
 } from '@chakra-ui/react'
 
-export default function NewsWidget() {
+export default function NewsWidget(): JSX.Element {
     return (
         <Box
             borderWidth="1px"

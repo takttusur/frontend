@@ -11,7 +11,9 @@ interface IWallpaperCaruselState {
     stopSliding: boolean
 }
 
-export default function WallpaperCarousel(props: IWallpaperCaruselProps) {
+export default function WallpaperCarousel(
+    props: IWallpaperCaruselProps
+): JSX.Element {
     const [state, setState] = useState<IWallpaperCaruselState>({
         currentSlide: 0,
         stopSliding: false,
@@ -25,7 +27,7 @@ export default function WallpaperCarousel(props: IWallpaperCaruselProps) {
     const SLIDES_INTERVAL_TIME = 3000 // время
     const ANIMATION_DIRECTION = 'right'
     useEffect(() => {
-        const prevSlide = () => {
+        const prevSlide = (): void => {
             setState((s) => ({
                 ...s,
                 currentSlide: s.stopSliding
@@ -36,7 +38,7 @@ export default function WallpaperCarousel(props: IWallpaperCaruselProps) {
             }))
         }
 
-        const nextSlide = () => {
+        const nextSlide = (): void => {
             setState((s) => ({
                 ...s,
                 currentSlide: s.stopSliding

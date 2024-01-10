@@ -7,7 +7,7 @@ import {
     Center,
 } from '@chakra-ui/react'
 
-export default function EquipmentWidget() {
+export default function EquipmentWidget(): JSX.Element {
     return (
         <Box
             borderWidth="1px"

@@ -1,6 +1,6 @@
 import { Text, Box, useColorModeValue, Center } from '@chakra-ui/react'
 
-export default function NewsComponent() {
+export default function NewsComponent(): JSX.Element {
     return (
         <Box
             borderWidth="1px"
