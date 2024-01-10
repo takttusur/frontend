@@ -12,6 +12,10 @@
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,md}\" --config ./.prettierrc.json",
     "preview": "vite preview"
   },
+  "pre-commit": [
+    "format",
+    "lint:fix"
+  ],
   "dependencies": {
     "@chakra-ui/icons": "2.1.0",
     "@chakra-ui/react": "2.8.0",
