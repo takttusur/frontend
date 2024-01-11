@@ -19,7 +19,7 @@ export default function ScrollReachedMarker(
             },
             { threshold: 1 }
         )
-        
+
         if (current) {
             observer.observe(current)
         }
