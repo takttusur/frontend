@@ -46,7 +46,7 @@ export class FakeNewsService implements INewsService {
         skip: number,
         take: number
     ): Promise<ApiQueryCollectionResult<Article>> {
-        const total = 6
+        const total = 30
         return new Promise<ApiQueryCollectionResult<Article>>(
             (resolve, reject) => {
                 const oneDayBefore = new Date()
@@ -91,9 +91,16 @@ export class FakeNewsService implements INewsService {
                         seasonImageService.getRandomPlaceholderForDate(date6)
                     ),
                 ]
+
                 const rand = Math.floor(Math.random() * 2)
                 if (rand === 1) {
-                    reject()
+                    setTimeout(() => {
+                        reject()
+                    }, REQUEST_DELAY)
+                    return
+                }
+                if (skip > total) {
+                    resolve(new ApiQueryCollectionResult([], take, skip, total))
                     return
                 }
                 setTimeout(() => {

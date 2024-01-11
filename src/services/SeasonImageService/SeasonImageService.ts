@@ -43,14 +43,11 @@ export default class SeasonImageService {
             throw new UnexpectedValueException()
         const pics = pictures[season]
         const index = Math.floor(Math.random() * pics.length)
-        console.log(index)
         return pics[index]
     }
 
     public getRandomPlaceholderForDate(date: Date): string {
-        console.log(date)
         const season = this.getSeasonNumber(date)
-        console.log(season)
         return this.getRandomPlaceholderForSeason(season)
     }
 }
