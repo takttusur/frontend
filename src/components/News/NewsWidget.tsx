@@ -1,49 +1,136 @@
-import {
-    LinkBox,
-    LinkOverlay,
-    Text,
-    Box,
-    useColorModeValue,
-    Center,
-} from '@chakra-ui/react'
+import { Button, Center, Spinner } from '@chakra-ui/react'
+import ArticleBigCard from './ArticleBigCard.tsx'
+import { useInfiniteQuery } from '@tanstack/react-query'
+import { QueryKeys } from '../../services/NewsService/QueryKeys.ts'
+import NewsService from '../../services/NewsService'
+import { useState } from 'react'
+import ArticleSmallCard from './ArticleSmallCard.tsx'
+import './NewsWidget.css'
+import { ApiQueryCollectionResult } from '../../services/Common/ApiResult.ts'
+import { Article } from '../../services/NewsService/Article.ts'
+import ScrollReachedMarker from '../Common/ScrollReachedMarker.tsx'
+
+interface INewsWidgetState {
+    currentPage: number
+    pageSize: number
+}
+
+const initialState: INewsWidgetState = {
+    currentPage: 0,
+    pageSize: 10,
+}
 
 export default function NewsWidget(): JSX.Element {
+    const [state] = useState<INewsWidgetState>(initialState)
+    const fetchNews = (o: {
+        pageParam: number
+    }): Promise<ApiQueryCollectionResult<Article>> => {
+        return NewsService.getLatestArticles(o.pageParam, state.pageSize)
+    }
+    const {
+        status,
+        hasNextPage,
+        fetchNextPage,
+        data,
+        refetch,
+        isFetchingNextPage,
+    } = useInfiniteQuery({
+        queryKey: [QueryKeys.getArticles],
+        queryFn: fetchNews,
+        initialPageParam: 0,
+        getNextPageParam: (lastPage, _, lastPageParam) => {
+            if (lastPage.data.length === 0) return undefined
+            return lastPageParam + state.pageSize
+        },
+        refetchOnWindowFocus: false,
+        retry: false,
+    })
+
+    const handleUserScrollFinished = (): void => {
+        fetchNextPage().then(
+            () => {},
+            () => {}
+        )
+    }
+
+    const renderLoader = (): JSX.Element => {
+        return status === 'pending' || isFetchingNextPage ? (
+            <Spinner size="xl" />
+        ) : (
+            <></>
+        )
+    }
+
+    const renderError = (): JSX.Element => {
+        if (
+            status !== 'pending' &&
+            !isFetchingNextPage &&
+            (status === 'error' || !data?.pages?.length)
+        )
+            return (
+                <Button
+                    colorScheme="red"
+                    onClick={() => {
+                        if (!data?.pages?.length) {
+                            refetch().then(
+                                () => {},
+                                () => {}
+                            )
+                            return
+                        }
+                        fetchNextPage().then(
+                            () => {},
+                            () => {}
+                        )
+                    }}
+                >
+                    Произошла ошибка. Попробуем еще раз?
+                </Button>
+            )
+        return <></>
+    }
+
+    const renderNews = (): JSX.Element[] => {
+        if (!data?.pages?.length) return []
+        const firstLineAmount = 2
+
+        const firstLine = data.pages[0].data
+            .slice(0, firstLineAmount)
+            .map((a, index) => (
+                <ArticleBigCard
+                    key={index}
+                    text={a.text}
+                    goUrl={a.originalUrl}
+                    date={a.date}
+                    imageUrl={a.imageUrl}
+                />
+            ))
+        const all = data.pages
+            .flatMap((p) => p.data)
+            .map((a, index) => (
+                <ArticleSmallCard
+                    key={index + firstLineAmount}
+                    text={a.text}
+                    date={a.date}
+                    goUrl={a.originalUrl}
+                />
+            ))
+
+        return firstLine.concat(all)
+    }
+
     return (
-        <Box
-            borderWidth="1px"
-            borderColor="black"
-            bg={useColorModeValue('white', 'gray.200')}
-            h={400}
-        >
+        <>
+            <div className="flex-container">{renderNews()}</div>
             <Center>
-                <Box w="90%" h={398}>
-                    <Box position="relative" w="100%" h={398} bg="gray">
-                        <Text
-                            position="absolute"
-                            top="50%"
-                            w="100%"
-                            textAlign="center"
-                        >
-                            {' '}
-                            News{' '}
-                        </Text>
-                        <LinkBox
-                            position="absolute"
-                            bottom="0%"
-                            right="0%"
-                            w="fit-content"
-                            textDecorationLine="underline"
-                            fontWeight={500}
-                            pb={2}
-                            pr={2}
-                        >
-                            <LinkOverlay href="/News">
-                                <Text> Подробнее </Text>
-                            </LinkOverlay>
-                        </LinkBox>
-                    </Box>
-                </Box>
+                {renderError()}
+                {renderLoader()}
+                {status === 'success' && hasNextPage && (
+                    <ScrollReachedMarker
+                        onReached={handleUserScrollFinished}
+                    ></ScrollReachedMarker>
+                )}
             </Center>
-        </Box>
+        </>
     )
 }

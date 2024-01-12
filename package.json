@@ -7,9 +7,9 @@
     "dev": "vite",
     "build": "tsc -p tsconfig.prod.json && vite build",
     "test": "NODE_ENV=test vitest run",
-    "lint": "eslint src --ext .js,.jsx,.ts,.tsx --max-warnings 0",
-    "lint:fix": "eslint src --fix",
-    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,md}\" --config ./.prettierrc.json",
+    "lint": "eslint src --ext .js,.jsx,.ts,.tsx --max-warnings 0 && eslint tests --ext .js,.jsx,.ts,.tsx --max-warnings 0",
+    "lint:fix": "eslint src --fix && eslint tests --fix",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,md}\" --config ./.prettierrc.json && prettier --write \"tests/**/*.{js,jsx,ts,tsx,css,md}\" --config ./.prettierrc.json",
     "preview": "vite preview"
   },
   "pre-commit": [
@@ -21,6 +21,8 @@
     "@chakra-ui/react": "2.8.0",
     "@emotion/react": "11.11.1",
     "@emotion/styled": "11.11.0",
+    "@tanstack/react-query": "5.17.9",
+    "date-fns": "^3.2.0",
     "framer-motion": "10.16.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",

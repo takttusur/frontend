@@ -13,10 +13,6 @@ import taktLogo from '../../assets/takt.svg'
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 import NavLink from './NavLink'
 
-const NEWS = {
-    label: 'Новости',
-    link: 'News',
-}
 const EVENTS = {
     label: 'События',
     link: 'CurrentEvents',
@@ -28,7 +24,7 @@ const EQUIPMENT = {
 
 export default function MainMenu(): JSX.Element {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const Links = [EVENTS, EQUIPMENT, NEWS]
+    const Links = [EVENTS, EQUIPMENT]
 
     return (
         <>
