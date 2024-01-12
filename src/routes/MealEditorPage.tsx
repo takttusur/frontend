@@ -4,7 +4,7 @@ import RecipeTableComponent from '../components/MealPlanner/RecipeTableComponent
 import RecipeEditorComponent from '../components/MealPlanner/RecipeEditorComponent'
 import { Recipe } from '../components/MealPlanner/Data/Recipe'
 
-function MealPlanner(): JSX.Element {
+function MealEditorPage(): JSX.Element {
     const [recipes, setRecipes] = useState<Recipe[]>([])
 
     const updateRecipes: (
@@ -32,4 +32,4 @@ function MealPlanner(): JSX.Element {
     )
 }
 
-export default MealPlanner
+export default MealEditorPage
