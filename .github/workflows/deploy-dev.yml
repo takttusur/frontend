@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - 'develop'
-      - 'feature/dev_env'
 
 permissions:
   contents: read
