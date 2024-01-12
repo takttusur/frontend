@@ -1,23 +1,19 @@
 import './App.css'
 import MainMenu from './components/Navigation/MainMenu'
 import Footer from './components/Footer'
-import MainPage from './MainPage'
-import CurrentEvents from './pages/CurrentEvents'
-import Equipment from './pages/Eqiupment'
-import MealPlanner from './pages/MealPlanner'
 
-import { Routes, Route } from 'react-router-dom'
+import { useRoutes } from 'react-router-dom'
+import rootRoutes from './routes/'
+
+const routes = rootRoutes.getRoutes()
 
 export default function App(): JSX.Element {
+    const routesElement = useRoutes(routes)
+
     return (
         <>
             <MainMenu />
-            <Routes>
-                <Route path="/" element={<MainPage />} />
-                <Route path="/CurrentEvents" element={<CurrentEvents />} />
-                <Route path="/Equipment" element={<Equipment />} />
-                <Route path="/MealPlanner" element={<MealPlanner />} />
-            </Routes>
+            {routesElement}
             <Footer />
         </>
     )

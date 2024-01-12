@@ -7,24 +7,25 @@ import {
     useColorModeValue,
     HStack,
     useDisclosure,
-    Link,
 } from '@chakra-ui/react'
 import taktLogo from '../../assets/takt.svg'
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
-import NavLink from './NavLink'
+import NavLink, { INavLinkProps } from './NavLink'
+import { Link } from 'react-router-dom'
+import rootRoutes from '../../routes'
+import { ToNavLinkProps } from '../../utils/NavigationUtils.ts'
 
-const EVENTS = {
-    label: 'События',
-    link: 'CurrentEvents',
-}
-const EQUIPMENT = {
-    label: 'Снаряжение',
-    link: 'Equipment',
-}
+const links: INavLinkProps[] = [
+    {
+        link: 'http://vk.com/takt_tusur',
+        label: 'Группа VK',
+    },
+    ToNavLinkProps(rootRoutes.Equipment),
+    ToNavLinkProps(rootRoutes.CurrentEvents),
+]
 
 export default function MainMenu(): JSX.Element {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const Links = [EVENTS, EQUIPMENT]
 
     return (
         <>
@@ -48,7 +49,7 @@ export default function MainMenu(): JSX.Element {
                         onClick={isOpen ? onClose : onOpen}
                     />
                     <HStack spacing={8} alignItems={'center'}>
-                        <Link href="/" title="Перейти главную страницу">
+                        <Link to="/Home" title="Перейти главную страницу">
                             <Image src={taktLogo} boxSize="50px" />
                         </Link>
                         <HStack
@@ -56,12 +57,7 @@ export default function MainMenu(): JSX.Element {
                             spacing={4}
                             display={{ base: 'none', md: 'flex' }}
                         >
-                            <NavLink
-                                label="Группа VK"
-                                link="https://vk.com/takt_tusur"
-                                isExternal={true}
-                            />
-                            {Links.map((link) => (
+                            {links.map((link) => (
                                 <NavLink
                                     key={link.label}
                                     {...{
@@ -77,7 +73,8 @@ export default function MainMenu(): JSX.Element {
                 {isOpen ? (
                     <Box pb={4} display={{ md: 'none' }}>
                         <Stack as={'nav'} spacing={4}>
-                            {Links.map((link) => (
+                            <NavLink {...ToNavLinkProps(rootRoutes.Home)} />
+                            {links.map((link) => (
                                 <NavLink
                                     key={link.label}
                                     {...{
