@@ -8,7 +8,7 @@ import { IAppRoute } from './common/IAppRoute.ts'
 
 class RootAppRoutingMap extends Object implements IAppRoutingMap {
     public readonly Home: IAppRoute = {
-        path: '/Home',
+        path: '/home',
         element: <HomePage />,
         title: 'Главная',
     }
@@ -18,17 +18,17 @@ class RootAppRoutingMap extends Object implements IAppRoutingMap {
         title: '',
     }
     public readonly MealEditor: IAppRoute = {
-        path: '/MealEditor',
+        path: '/mealEditor',
         element: <MealEditorPage />,
         title: 'Редактор раскладок',
     }
     public readonly CurrentEvents: IAppRoute = {
-        path: '/CurrentEvents',
+        path: '/currentEvents',
         element: <CurrentEventsPage />,
         title: 'События',
     }
     public readonly Equipment: IAppRoute = {
-        path: '/Equipment',
+        path: '/equipment',
         element: <EquipmentPage />,
         title: 'Снаряжение',
     }

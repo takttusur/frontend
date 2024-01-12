@@ -1,10 +1,7 @@
-name: Build develop
+name: Lint, test and build the code before PR will be merged 
 on:
-  push:
-    branches:
-      - 'develop'
   pull_request:
-    branches: [ develop ]
+    branches: [ develop, master ]
 
 jobs:
   build:
