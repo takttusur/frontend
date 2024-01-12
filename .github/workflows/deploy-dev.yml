@@ -13,10 +13,16 @@ permissions:
 concurrency:
   group: "pages"
   cancel-in-progress: false
+  
+env:
+  BASE_URL: /
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -27,7 +33,7 @@ jobs:
       - name: Test
         run: npm run test
       - name: Build
-        run: npm run build
+        run: npm run build -- --base=$BASE_URL
       - name: Archive artifacts
         uses: actions/upload-pages-artifact@v3
         with:
