@@ -34,7 +34,6 @@ jobs:
           name: takttusur-develop-dev
           path: dist 
           retention-days: 15
-          if-no-files-found: error
   deploy:
     environment:
       name: github-pages
