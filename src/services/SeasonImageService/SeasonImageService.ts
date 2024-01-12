@@ -23,6 +23,10 @@ const pictures = [
     ],
 ]
 
+/**
+ * @name SeasonImageService
+ * @summary Returns a picture for date, based on seasons (for Europe and Asia region)
+ */
 export default class SeasonImageService {
     private _winter = [11, 0, 1]
     private _spring = [2, 3, 4]

@@ -40,13 +40,21 @@ const text6 =
 const url6 = 'https://vk.com/wall-597969_6477'
 const date6 = new Date(2023, 9, 15)
 
-const REQUEST_DELAY = 3000
+const DEFAULT_REQUEST_DELAY = 3000
 export class FakeNewsService implements INewsService {
+    private _callCounter: number = 0
+    private readonly _requestDelay: number = 0
+
+    constructor(requestDelay?: number) {
+        this._requestDelay = requestDelay ? requestDelay : DEFAULT_REQUEST_DELAY
+    }
+
     getLatestArticles(
         skip: number,
         take: number
     ): Promise<ApiQueryCollectionResult<Article>> {
-        const total = 30
+        this._callCounter++
+        const total = 50
         return new Promise<ApiQueryCollectionResult<Article>>(
             (resolve, reject) => {
                 const oneDayBefore = new Date()
@@ -92,22 +100,23 @@ export class FakeNewsService implements INewsService {
                     ),
                 ]
 
-                const rand = Math.floor(Math.random() * 2)
-                if (rand === 1) {
+                if (this._callCounter % 3 === 0) {
                     setTimeout(() => {
                         reject()
-                    }, REQUEST_DELAY)
+                    }, this._requestDelay)
                     return
                 }
+
                 if (skip > total) {
                     resolve(new ApiQueryCollectionResult([], take, skip, total))
                     return
                 }
+
                 setTimeout(() => {
                     resolve(
                         new ApiQueryCollectionResult(data, take, skip, total)
                     )
-                }, REQUEST_DELAY)
+                }, this._requestDelay)
             }
         )
     }
