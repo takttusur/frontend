@@ -1,49 +1,60 @@
-import {
-    LinkBox,
-    LinkOverlay,
-    Text,
-    Box,
-    useColorModeValue,
-    Center,
-} from '@chakra-ui/react'
+import './CurrentEventsWidget.css'
+import { Card, CardBody, Heading, Image, Stack, Text } from '@chakra-ui/react'
 
 export default function CurrentEventsWidget(): JSX.Element {
     return (
-        <Box
-            borderWidth="1px"
-            borderColor="black"
-            bg={useColorModeValue('white', 'gray.200')}
-            h={400}
-        >
-            <Center>
-                <Box w="90%" h={398}>
-                    <Box position="relative" w="100%" h={398} bg="gray">
-                        <Text
-                            position="absolute"
-                            top="50%"
-                            w="100%"
-                            textAlign="center"
-                        >
-                            {' '}
-                            CurrentEvents{' '}
-                        </Text>
-                        <LinkBox
-                            position="absolute"
-                            bottom="0%"
-                            right="0%"
-                            w="fit-content"
-                            textDecorationLine="underline"
-                            fontWeight={500}
-                            pb={2}
-                            pr={2}
-                        >
-                            <LinkOverlay href="/CurrentEvents">
-                                <Text> Подробнее </Text>
-                            </LinkOverlay>
-                        </LinkBox>
-                    </Box>
-                </Box>
-            </Center>
-        </Box>
+        <>
+            <Heading as="h2" size="xl" className="events-title">
+                События
+            </Heading>
+            <div className="flex-container">
+                <Card w="md">
+                    <CardBody>
+                        <Image
+                            src="https://sun9-35.userapi.com/impg/rn95PzFKZlO5sSEtJHPlNh-G0okrMrMcBZjk-Q/_TEXhgjuAUY.jpg?size=2560x1920&quality=95&sign=7ae8ee67ce3aa3bbbdf6bc2cc17a0f03&type=album"
+                            borderRadius="lg"
+                        />
+                        <Stack mt="3">
+                            <Heading size="md">Зимние СПАСы - 2023</Heading>
+                            <Text size="xs" textColor="red.400">
+                                Мероприятие состоялось 22.10.2023
+                            </Text>
+                        </Stack>
+                    </CardBody>
+                </Card>
+                <Card w="md">
+                    <CardBody>
+                        <Image
+                            src="https://sun9-35.userapi.com/impg/rn95PzFKZlO5sSEtJHPlNh-G0okrMrMcBZjk-Q/_TEXhgjuAUY.jpg?size=2560x1920&quality=95&sign=7ae8ee67ce3aa3bbbdf6bc2cc17a0f03&type=album"
+                            borderRadius="lg"
+                        />
+                        <Stack mt="3">
+                            <Heading size="md">
+                                Набор в Туристско-Альпинистский клуб «ТАКТ»
+                            </Heading>
+                            <Text size="xs" textColor="green.500">
+                                Мероприятие запланировано на 12.02.2024
+                            </Text>
+                        </Stack>
+                    </CardBody>
+                </Card>
+                <Card w="md">
+                    <CardBody>
+                        <Image
+                            src="https://sun9-35.userapi.com/impg/rn95PzFKZlO5sSEtJHPlNh-G0okrMrMcBZjk-Q/_TEXhgjuAUY.jpg?size=2560x1920&quality=95&sign=7ae8ee67ce3aa3bbbdf6bc2cc17a0f03&type=album"
+                            borderRadius="lg"
+                        />
+                        <Stack mt="3">
+                            <Heading size="md">
+                                Тренировка по Технике Водного Туризма 2023 (ТВТ)
+                            </Heading>
+                            <Text size="xs" textColor="green.500">
+                                Мероприятие запланировано на 05.05.2024
+                            </Text>
+                        </Stack>
+                    </CardBody>
+                </Card>
+            </div>
+        </>
     )
 }
