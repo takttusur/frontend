@@ -1,4 +1,4 @@
-import { Button, Center, Spinner } from '@chakra-ui/react'
+import { Button, Center, Heading, Spinner } from '@chakra-ui/react'
 import ArticleBigCard from './ArticleBigCard.tsx'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { QueryKeys } from '../../services/NewsService/QueryKeys.ts'
@@ -121,7 +121,9 @@ export default function NewsWidget(): JSX.Element {
 
     return (
         <>
-            <h1 className="news-title">Новости</h1>
+            <Heading as="h2" size="xl" className="news-title">
+                Новости
+            </Heading>
             <div className="flex-container">{renderNews()}</div>
             <Center>
                 {renderError()}
