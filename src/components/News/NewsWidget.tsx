@@ -121,6 +121,7 @@ export default function NewsWidget(): JSX.Element {
 
     return (
         <>
+            <h1 className="news-title">Новости</h1>
             <div className="flex-container">{renderNews()}</div>
             <Center>
                 {renderError()}
