@@ -69,11 +69,7 @@ const PlanConfigurationComponent: React.FC<PlanConfigurationComponentProps> = ({
         value={config.preferredIngredients.join(', ')}
         onChange={handlePrefferedIngridientsChange}
       />
-      <Textarea
-        placeholder="Предпочтительные ингредиенты"
-        value={config.blacklistIngredients.join(', ')}
-        onChange={handleBlackListIngridientsChange}
-      />
+
     </VStack>
     <Heading as="h3" size="md" mb={2}>
       Количество людей

@@ -51,10 +51,13 @@ const generateMealPlan = (planConfig: PlanConfiguration, recipes: Recipe[]): Mea
     const meals: Meal[] = Object.values(EatingTimes).map((time) => {
       const availableRecipes = recipes.filter((recipe) => {
         const doesNotIncludeBlacklistIngredients =
-          !blacklistIngredients.some((ingredient) => recipe.ingredients.some((i) => i.name.includes(ingredient)));
-
+          !blacklistIngredients.some((blacklistedIngredient) =>
+            recipe.ingredients.some((recipeIngredient) => recipeIngredient.name === blacklistedIngredient)
+          );
+      
         return doesNotIncludeBlacklistIngredients && recipe.suggestedFor.includes(time);
       });
+      
 
       const randomIndex = Math.floor(Math.random() * availableRecipes.length);
       const selectedRecipe = availableRecipes[randomIndex];
@@ -129,6 +132,52 @@ const MealPlanBrowserComponent: React.FC<MealPlanBrowserComponentProps> = (props
     }
   };
 
+  const generateIngredientsText = (planConfig: PlanConfiguration) => {
+    const { numberOfPeople } = planConfig;
+    
+    const allIngredients = generatedMealPlan.reduce((ingredientsList, meal) => {
+      const { ingredients } = meal.mainDish;
+  
+      ingredients.forEach((ingredient) => {
+        const { name, Qty, Units } = ingredient;
+        const adjustedQuantity = Qty * numberOfPeople;
+  
+        if (!ingredientsList[name]) {
+          ingredientsList[name] = { totalQuantity: 0, unit: Units };
+        }
+  
+        ingredientsList[name].totalQuantity += adjustedQuantity;
+      });
+  
+      return ingredientsList;
+    }, {});
+  
+    return Object.entries(allIngredients)
+      .map(([name, { totalQuantity, unit }]) => `${name}: ${totalQuantity} ${unit}`)
+      .join('\n');
+  };
+  
+  const downloadIngredientsTxt = () => {
+    const ingredientsText = generateIngredientsText(mealPlan);
+  
+    const blob = new Blob([ingredientsText], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+  
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'ingredients.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  
+    window.URL.revokeObjectURL(url);
+  };
+  
+  
+
+
+  
+
   return (
     <Box>
       <Heading>Планировщик меню</Heading>
@@ -178,6 +227,15 @@ const MealPlanBrowserComponent: React.FC<MealPlanBrowserComponentProps> = (props
             </Table>
           </ModalBody>
           <ModalFooter>
+            <Button
+              colorScheme="purple"
+              size="sm"
+              onClick={() => downloadIngredientsTxt()}
+              disabled={!isButtonClicked}
+            >
+              Скачать ингредиенты
+            </Button>
+
             <Button colorScheme="blue" onClick={closeMenuModal}>
               Закрыть
             </Button>
