@@ -108,6 +108,7 @@ const MealPlanBrowserComponent: React.FC<MealPlanBrowserComponentProps> = (props
   const generateAndSetMealPlan = () => {
     const newGeneratedMealPlan = generateMealPlan(mealPlan, recipes);
     setGeneratedMealPlan(newGeneratedMealPlan);
+    setIsButtonClicked(false); // Исправлено: теперь сбрасываем флаг после генерации
   };
 
   const openMenuModal = () => {
@@ -118,7 +119,9 @@ const MealPlanBrowserComponent: React.FC<MealPlanBrowserComponentProps> = (props
 
   const closeMenuModal = () => {
     setMenuModalOpen(false);
+    setIsButtonClicked(false);
   };
+
 
   const changeRecipe = () => {
     if (selectedDay !== null) {
@@ -194,10 +197,9 @@ const MealPlanBrowserComponent: React.FC<MealPlanBrowserComponentProps> = (props
           <ModalHeader>Ваш план готов!</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Table>
+          <Table>
               <Thead>
                 <Tr>
-
                   <Th>Прием пищи</Th>
                   <Th>Дата</Th>
                   <Th>Блюдо</Th>
@@ -207,10 +209,9 @@ const MealPlanBrowserComponent: React.FC<MealPlanBrowserComponentProps> = (props
               <Tbody>
                 {generatedMealPlan.map((meal, index) => (
                   <Tr key={index}>
-
                     <Td>{meal.suggestedFor}</Td>
                     <Td>{meal.date}</Td>
-                    <Td>{meal.mainDish.name}</Td>
+                    <Td>{meal.mainDish?.name}</Td>
                     <Td>
                       <Button
                         colorScheme="green"

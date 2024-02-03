@@ -29,12 +29,16 @@ const PlanConfigurationComponent: React.FC<PlanConfigurationComponentProps> = ({
     const preferredIngredients = event.target.value.split(',').map(item => item.trim());
     setConfig({ ...config, preferredIngredients });
   };
-
+  
   const handleBlackListIngridientsChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const blacklistIngredients = event.target.value.split(',').map(item => item.trim());
     setConfig({ ...config, blacklistIngredients });
   };
-
+  
+  
+  
+  
+  
   const handleNumberOfPeopleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setConfig({ ...config, numberOfPeople: Number(event.target.value) });
   };
@@ -64,11 +68,12 @@ const PlanConfigurationComponent: React.FC<PlanConfigurationComponentProps> = ({
       mb={2}
     />
     <VStack align="start" spacing={2} mb={2}>
-      <Textarea
-        placeholder="Запрещенные ингредиенты"
-        value={config.preferredIngredients.join(', ')}
-        onChange={handlePrefferedIngridientsChange}
-      />
+    <Textarea
+    placeholder="Запрещенные ингредиенты"
+    value={config.blacklistIngredients}
+    onChange={handleBlackListIngridientsChange}
+/>
+
 
     </VStack>
     <Heading as="h3" size="md" mb={2}>
