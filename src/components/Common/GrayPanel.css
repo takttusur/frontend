@@ -1,0 +1,41 @@
+.gray-panel {
+    border-radius: 23px;
+    border: 1px solid #EBEBEB;
+    background: #F6F6F6;
+
+    display: flex;
+    padding: 16px;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.gray-panel>h1 {
+    color: #222;
+
+    /* heading/h1 */
+    font-family: Onest, sans-serif;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%; /* 26px */
+    letter-spacing: 0.52px;
+
+    align-self: stretch;
+}
+
+.gray-panel>p {
+    color: #242424;
+
+    /* body/large */
+    font-family: Onest, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 22.4px */
+    letter-spacing: 0.16px;
+}
+
+.gray-panel>button {
+    align-self: stretch;
+}

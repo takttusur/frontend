@@ -5,6 +5,7 @@ import CurrentEventsPage from './CurrentEvents.tsx'
 import EquipmentPage from './Eqiupment.tsx'
 import { IAppRoutingMap } from './common/IAppRoutingMap.ts'
 import { IAppRoute } from './common/IAppRoute.ts'
+import IntroductionPage from './eda/IntroductionPage.tsx'
 
 class RootAppRoutingMap extends Object implements IAppRoutingMap {
     public readonly Home: IAppRoute = {
@@ -31,6 +32,12 @@ class RootAppRoutingMap extends Object implements IAppRoutingMap {
         path: '/equipment',
         element: <EquipmentPage />,
         title: 'Снаряжение',
+    }
+    
+    public readonly Eda: IAppRoute = {
+        path: '/eda',
+        element: <IntroductionPage/>,
+        title: 'Еда в поход'
     }
 
     public getRoutes(): RouteObject[] {

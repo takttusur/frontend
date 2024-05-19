@@ -1,0 +1,31 @@
+button.blue-button {
+    display: inline-flex;
+    padding: 16px 24px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    border-radius: 16px;
+    border-color: #36449C;
+    background: #36449C;
+
+    color: #FFF;
+    leading-trim: both;
+    text-edge: cap;
+
+    /* body/button */
+    font-family: Onest, sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+button.blue-button:hover {
+    box-shadow: 0px 4px 4px 0px rgba(216, 216, 216, 0.25);
+}
+
+button.blue-button:active {
+    background: #222B62;
+    border-color: #222B62;
+}
