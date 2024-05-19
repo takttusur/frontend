@@ -19,10 +19,10 @@ if (
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
-            <QueryClientProvider client={queryClient}>
-                <HashRouter>
-                    <App />
-                </HashRouter>
-            </QueryClientProvider>
+        <QueryClientProvider client={queryClient}>
+            <HashRouter>
+                <App />
+            </HashRouter>
+        </QueryClientProvider>
     </React.StrictMode>
 )

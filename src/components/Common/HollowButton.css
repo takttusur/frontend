@@ -6,10 +6,10 @@ button.hollow-button {
     gap: 8px;
 
     border-radius: 16px;
-    border: 1px solid #3D3D3D;
-    background: #FFF;
+    border: 1px solid #3d3d3d;
+    background: #fff;
 
-    color: #3D3D3D;
+    color: #3d3d3d;
     leading-trim: both;
 
     text-edge: cap;
@@ -26,5 +26,5 @@ button.hollow-button:hover {
 }
 
 button.hollow-button:active {
-    background: #EBEBEB;
+    background: #ebebeb;
 }

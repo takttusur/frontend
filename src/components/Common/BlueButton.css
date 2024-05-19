@@ -6,10 +6,10 @@ button.blue-button {
     gap: 8px;
 
     border-radius: 16px;
-    border-color: #36449C;
-    background: #36449C;
+    border-color: #36449c;
+    background: #36449c;
 
-    color: #FFF;
+    color: #fff;
     leading-trim: both;
     text-edge: cap;
 
@@ -26,6 +26,6 @@ button.blue-button:hover {
 }
 
 button.blue-button:active {
-    background: #222B62;
-    border-color: #222B62;
+    background: #222b62;
+    border-color: #222b62;
 }

@@ -33,11 +33,11 @@ class RootAppRoutingMap extends Object implements IAppRoutingMap {
         element: <EquipmentPage />,
         title: 'Снаряжение',
     }
-    
+
     public readonly Eda: IAppRoute = {
         path: '/eda',
-        element: <IntroductionPage/>,
-        title: 'Еда в поход'
+        element: <IntroductionPage />,
+        title: 'Еда в поход',
     }
 
     public getRoutes(): RouteObject[] {
