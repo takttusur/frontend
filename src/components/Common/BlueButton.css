@@ -6,7 +6,8 @@ button.blue-button {
     gap: 8px;
 
     border-radius: 16px;
-    border-color: #36449c;
+    border-width: 0;
+    cursor: pointer;
     background: #36449c;
 
     color: #fff;
@@ -21,7 +22,7 @@ button.blue-button {
     line-height: normal;
 }
 
-button.blue-button:hover {
+button.blue-button:not(:disabled):hover {
     box-shadow: 0px 4px 4px 0px rgba(216, 216, 216, 0.25);
 }
 

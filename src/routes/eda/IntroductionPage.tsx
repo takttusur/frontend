@@ -2,10 +2,11 @@ import GrayPanel from '../../components/Common/GrayPanel.tsx'
 import BlueButton from '../../components/Common/BlueButton.tsx'
 import HollowButton from '../../components/Common/HollowButton.tsx'
 import ExpandablePanel from '../../components/Common/ExpandablePanel.tsx'
+import ScrollLayout from '../../components/Common/ScrollLayout.tsx'
 
 function IntroductionPage(): JSX.Element {
     return (
-        <div>
+        <ScrollLayout>
             <GrayPanel title="Твой помощник в составлении раскладки">
                 <p>
                     Мы автоматически составим оптимальное меню на несколько
@@ -14,12 +15,14 @@ function IntroductionPage(): JSX.Element {
                     нашим сервисом!
                 </p>
                 <BlueButton title="Начать" />
-                <HollowButton title="Импорт из Google Таблиц" />
+                <HollowButton title="Импорт из Google Таблиц" disabled={true} />
             </GrayPanel>
             <GrayPanel title="FAQ">
-                <ExpandablePanel title="Как пользоваться нашим сервисом?"></ExpandablePanel>
+                <ExpandablePanel title="Как пользоваться нашим сервисом?">
+                    123321
+                </ExpandablePanel>
             </GrayPanel>
-        </div>
+        </ScrollLayout>
     )
 }
 

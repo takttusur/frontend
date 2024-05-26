@@ -11,6 +11,7 @@ button.hollow-button {
 
     color: #3d3d3d;
     leading-trim: both;
+    cursor: pointer;
 
     text-edge: cap;
     /* body/button */
@@ -21,10 +22,18 @@ button.hollow-button {
     line-height: normal;
 }
 
-button.hollow-button:hover {
+button.hollow-button:not(:disabled):hover {
     box-shadow: 0px 4px 4px 0px rgba(216, 216, 216, 0.25);
 }
 
 button.hollow-button:active {
     background: #ebebeb;
+}
+
+button.hollow-button:disabled {
+    border: 1px solid #ccc;
+    background: #f2f2f2;
+
+    color: #ccc;
+    cursor: not-allowed;
 }

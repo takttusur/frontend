@@ -1,0 +1,25 @@
+header.main-menu {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    margin-bottom: 16px;
+
+    display: flex;
+    padding: 16px 0 16px 0;
+    justify-content: space-between;
+    align-items: center;
+
+    background: #fff;
+    box-shadow: 0 8px 8px 0 #ececed;
+}
+
+.takt-logo {
+    margin-left: 16px;
+    color: #c01911;
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: uppercase;
+}
