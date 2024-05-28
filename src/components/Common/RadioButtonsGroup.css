@@ -1,0 +1,39 @@
+.radio-buttons-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+}
+
+.radio-buttons-button {
+    display: flex;
+    width: 91px;
+    padding: 4px 8px;
+    align-items: center;
+    gap: 12px;
+
+    border-radius: 8px;
+}
+
+.radio-buttons-mark {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: #ebebeb;
+}
+
+.radio-buttons-mark:hover {
+    box-shadow: 0 0 7px 0 rgba(89, 89, 89, 0.25);
+}
+
+.radio-buttons-text {
+    flex: 1 0 0;
+    color: rgba(25, 28, 48, 0.9);
+    /* body/medium */
+    font-family: Onest, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 19.6px */
+    letter-spacing: 0px;
+}

@@ -4,6 +4,7 @@ import SelectList, {
     ISelectListOption,
 } from '../../components/Common/SelectList.tsx'
 import LineInput from '../../components/Common/LineInput.tsx'
+import RadioButtonsGroup from '../../components/Common/RadioButtonsGroup.tsx'
 
 function SettingsPage(): JSX.Element {
     const options: ISelectListOption[] = [
@@ -31,6 +32,12 @@ function SettingsPage(): JSX.Element {
                     placeholder="Количество человек"
                     commonMask="number"
                 ></LineInput>
+                <RadioButtonsGroup
+                    title="Нужны ли перекусы?"
+                    options={options}
+                    groupName="snacks"
+                    selectedOption={options[1]}
+                ></RadioButtonsGroup>
             </GrayPanel>
         </ScrollLayout>
     )
