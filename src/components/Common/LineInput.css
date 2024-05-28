@@ -2,7 +2,7 @@
     border-radius: 12px;
     border: 2px solid #e0e0e0;
     background: #fff;
-    height: 44px;
+    height: 24px;
     padding: 10px 16px;
 
     color: #757575;
@@ -13,4 +13,14 @@
     font-style: normal;
     font-weight: 400;
     line-height: 20px; /* 153.846% */
+}
+
+.line-input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.line-input[type=number] {
+    -moz-appearance: textfield;
 }
