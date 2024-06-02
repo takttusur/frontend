@@ -7,6 +7,7 @@ import { IAppRoutingMap } from './common/IAppRoutingMap.ts'
 import { IAppRoute } from './common/IAppRoute.ts'
 import IntroductionPage from './eda/IntroductionPage.tsx'
 import SettingsPage from './eda/SettingsPage.tsx'
+import ProcessingPage from './eda/ProcessingPage.tsx'
 
 class RootAppRoutingMap extends Object implements IAppRoutingMap {
     public readonly Home: IAppRoute = {
@@ -45,6 +46,12 @@ class RootAppRoutingMap extends Object implements IAppRoutingMap {
         path: '/eda/settings',
         element: <SettingsPage />,
         title: 'Еда в поход',
+    }
+
+    public readonly EdaProcessing: IAppRoute = {
+        path: '/eda/processing',
+        element: <ProcessingPage />,
+        title: 'Готовим раскладку',
     }
 
     public getRoutes(): RouteObject[] {

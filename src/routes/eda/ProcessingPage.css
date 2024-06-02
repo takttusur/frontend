@@ -1,0 +1,30 @@
+.eda-loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    align-self: center;
+    gap: 16px;
+
+    margin-top: 10vh;
+}
+
+.eda-loading-icon {
+    color: #787885;
+    width: 124px;
+    height: 124px;
+}
+
+.eda-loading-container p {
+    width: 219px;
+
+    color: #222;
+    text-align: center;
+    /* heading/h2 */
+    font-family: Onest, sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%; /* 28px */
+    letter-spacing: 0.2px;
+}
