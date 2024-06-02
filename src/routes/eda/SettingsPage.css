@@ -1,0 +1,11 @@
+.eda-settings-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 16px;
+    align-self: stretch;
+}
+
+.eda-settings-buttons * {
+    flex: 1 0 0;
+}

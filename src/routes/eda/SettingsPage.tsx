@@ -6,6 +6,9 @@ import SelectList, {
 import LineInput from '../../components/Common/LineInput.tsx'
 import RadioButtonsGroup from '../../components/Common/RadioButtonsGroup.tsx'
 import MultiselectInput from '../../components/Common/MultiselectInput.tsx'
+import HollowButton from '../../components/Common/HollowButton.tsx'
+import BlueButton from '../../components/Common/BlueButton.tsx'
+import "./SettingsPage.css"
 
 function SettingsPage(): JSX.Element {
     const options: ISelectListOption[] = [
@@ -52,6 +55,10 @@ function SettingsPage(): JSX.Element {
                     options={options}
                     placeholder="Начните вводить продукты"
                 ></MultiselectInput>
+                <div className="eda-settings-buttons">
+                    <HollowButton title="Назад" disabled={false}/>
+                    <BlueButton title="Вперёд"/>
+                </div>
             </GrayPanel>
         </ScrollLayout>
     )
