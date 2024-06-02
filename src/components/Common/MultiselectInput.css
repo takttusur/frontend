@@ -1,0 +1,111 @@
+div.multiselect-input-container {
+    position: relative;
+}
+
+.multiselect-input-container .multiselect-input-dropdown {
+    position: absolute;
+    box-sizing: border-box;
+    width: 100%;
+    z-index: 1000;
+
+    margin-top: 4px;
+    list-style-type: none;
+    display: flex;
+    align-items: stretch;
+    gap: 4px;
+    flex-direction: column;
+    border-radius: 12px;
+    background: #fff;
+    padding: 12px 0px;
+
+    /* shadow1 */
+    box-shadow: 0px 4px 4px 0px rgba(216, 216, 216, 0.25);
+}
+
+.multiselect-input-container .multiselect-input-dropdown > li {
+    background: #fff;
+    padding: 10px 12px;
+
+    color: #3d3d3d;
+    text-align: left;
+    /* body/medium */
+    font-family: Onest, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 19.6px */
+    cursor: pointer;
+}
+
+.multiselect-input-container .multiselect-input-dropdown > li:hover {
+    background-color: #e0e0e0;
+    color: #000;
+}
+
+.multiselect-input-container .multiselect-input-dropdown > li:active {
+    background-color: #c0c0c0;
+    color: #000;
+}
+
+.multiselect-input-container > input {
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 12px;
+    border: 2px solid #e0e0e0;
+    background: #fff;
+    height: 48px;
+    padding: 10px 16px;
+    color: #757575;
+    /* body/small */
+    font-family: Onest, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 153.846% */
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+}
+
+.multiselect-input-selected {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.multiselect-input-selected > span {
+    display: flex;
+    padding: 4px 12px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    border-radius: 32px;
+    border: 2px solid #2a51b6;
+
+    color: #3d3d3d;
+    text-align: center;
+    /* body/small */
+    font-family: Onest, sans-serif;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 153.846% */
+}
+
+.multiselect-input-selected-remove {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+
+    border-radius: 12px;
+}
+
+.multiselect-input-selected-remove:hover {
+    background: #e0e0e0;
+}
+
+.multiselect-input-selected-remove:active {
+    background: #e0e0e0;
+    box-shadow: 0 0 7px 0 rgba(89, 89, 89, 0.25);
+}

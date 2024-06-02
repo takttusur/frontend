@@ -17,12 +17,21 @@ interface RadioButtonsGroupOption {
 export default function RadioButtonsGroup(
     props: RadioButtonsGroupProps
 ): JSX.Element {
+    const markClass = 'radio-buttons-mark'
+    const checkedClass = 'radio-buttons-mark checked'
+
     return (
         <UserInputContainer title={props.title}>
             <div className="radio-buttons-container">
                 {props.options.map((o) => (
                     <div className="radio-buttons-button" key={o.value}>
-                        <span className="radio-buttons-mark ">
+                        <span
+                            className={
+                                o == props.selectedOption
+                                    ? checkedClass
+                                    : markClass
+                            }
+                        >
                             {o == props.selectedOption && (
                                 <img src={RadioButtonSvg} alt={o.text} />
                             )}

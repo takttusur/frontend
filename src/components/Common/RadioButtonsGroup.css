@@ -22,6 +22,19 @@
     background: #ebebeb;
 }
 
+.radio-buttons-mark {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: #ebebeb;
+    cursor: pointer;
+}
+
+.radio-buttons-mark.checked {
+    cursor: default;
+}
+
 .radio-buttons-mark:hover {
     box-shadow: 0 0 7px 0 rgba(89, 89, 89, 0.25);
 }

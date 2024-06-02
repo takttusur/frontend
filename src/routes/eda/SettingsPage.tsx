@@ -5,13 +5,12 @@ import SelectList, {
 } from '../../components/Common/SelectList.tsx'
 import LineInput from '../../components/Common/LineInput.tsx'
 import RadioButtonsGroup from '../../components/Common/RadioButtonsGroup.tsx'
+import MultiselectInput from '../../components/Common/MultiselectInput.tsx'
 
 function SettingsPage(): JSX.Element {
     const options: ISelectListOption[] = [
         { text: 'Ноль', value: '0' },
         { text: 'Один', value: '1' },
-        { text: 'Два', value: '2' },
-        { text: 'Три', value: '3' },
     ]
 
     return (
@@ -38,6 +37,21 @@ function SettingsPage(): JSX.Element {
                     groupName="snacks"
                     selectedOption={options[1]}
                 ></RadioButtonsGroup>
+                <LineInput
+                    title="Сколько перекусов?"
+                    placeholder="Количество перекусов в день"
+                    commonMask="number"
+                ></LineInput>
+                <MultiselectInput
+                    title="Перечислите список нежелательных продуктов"
+                    options={options}
+                    placeholder="Начните вводить продукты"
+                ></MultiselectInput>
+                <MultiselectInput
+                    title="Перечислите список предпочтительных продуктов"
+                    options={options}
+                    placeholder="Начните вводить продукты"
+                ></MultiselectInput>
             </GrayPanel>
         </ScrollLayout>
     )
