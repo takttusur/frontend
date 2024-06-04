@@ -1,0 +1,98 @@
+.day-plan-short {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+}
+
+.day-plan-short-title {
+    align-self: stretch;
+
+    color: #222b62;
+
+    /* heading/h2 */
+    font-family: Onest, sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%; /* 28px */
+    letter-spacing: 0.2px;
+}
+
+.day-plan-short-meals {
+    display: flex;
+    padding: 16px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 16px;
+
+    border-radius: 23px;
+    border: 1px solid #ebebeb;
+    background: #f6f6f6;
+}
+
+.day-plan-short-grid {
+    align-self: stretch;
+    border-spacing: 0 8px;
+    border-collapse: separate;
+}
+
+.day-plan-short-grid th {
+    text-align: left;
+
+    color: #757575;
+
+    /* body/small */
+    font-family: Onest, sans-serif;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 153.846% */
+}
+
+.day-plan-short-grid tbody tr td:first-child {
+    color: #222;
+
+    /* body/large bold */
+    font-family: Onest, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%; /* 22.4px */
+    letter-spacing: 0.16px;
+}
+
+.day-plan-short-summary {
+    color: #36449c;
+
+    /* body/large bold */
+    font-family: Onest, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%; /* 22.4px */
+    letter-spacing: 0.16px;
+}
+
+.day-plan-short-modify {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.day-plan-short-modify-icon {
+    width: 24px;
+    height: 24px;
+    color: black;
+    cursor: pointer;
+}
+
+.day-plan-short-modify-icon:hover {
+    color: gray;
+}
+
+.day-plan-short-modify-icon:active {
+    color: darkgray;
+}

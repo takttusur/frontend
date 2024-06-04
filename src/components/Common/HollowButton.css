@@ -1,6 +1,5 @@
 button.hollow-button {
     display: inline-flex;
-    padding: 16px 24px;
     justify-content: center;
     align-items: center;
     gap: 8px;
@@ -20,6 +19,14 @@ button.hollow-button {
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+}
+
+button.hollow-button-low {
+    padding: 8px 16px;
+}
+
+button.hollow-button-high {
+    padding: 16px 24px;
 }
 
 button.hollow-button:not(:disabled):hover {
