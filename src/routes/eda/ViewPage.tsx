@@ -4,6 +4,7 @@ import SwitchButton, {
     ISwitchButtonOptions,
 } from '../../components/Common/SwitchButton.tsx'
 import DayPlanShort from '../../components/Common/DayPlanShort.tsx'
+import BottomNavigation from '../../components/Common/BottonNavigation.tsx'
 
 const options: ISwitchButtonOptions[] = [
     {
@@ -18,12 +19,15 @@ const options: ISwitchButtonOptions[] = [
 
 export default function ViewPage(): JSX.Element {
     return (
-        <ScrollLayout>
-            <HeadTitle title="Раскладка" />
-            <SwitchButton options={options} selectedValue={options[0]} />
-            <DayPlanShort />
-            <DayPlanShort />
-            <DayPlanShort />
-        </ScrollLayout>
+        <div>
+            <ScrollLayout>
+                <HeadTitle title="Раскладка" />
+                <SwitchButton options={options} selectedValue={options[0]} />
+                <DayPlanShort />
+                <DayPlanShort />
+                <DayPlanShort />
+            </ScrollLayout>
+            <BottomNavigation></BottomNavigation>
+        </div>
     )
 }
