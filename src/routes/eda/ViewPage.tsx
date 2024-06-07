@@ -6,7 +6,7 @@ import SwitchButton, {
 import DayPlanShort from '../../components/Common/DayPlanShort.tsx'
 import BottomNavigation from '../../components/Common/BottonNavigation.tsx'
 import BlueButton from '../../components/Common/BlueButton.tsx'
-import "./ViewPage.css"
+import './ViewPage.css'
 
 const options: ISwitchButtonOptions[] = [
     {
