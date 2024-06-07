@@ -1,0 +1,11 @@
+.meal-summary-text {
+    color: #36449c;
+
+    /* heading/h2 */
+    font-family: Onest, sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%; /* 28px */
+    letter-spacing: 0.2px;
+}
