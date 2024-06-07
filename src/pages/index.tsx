@@ -5,10 +5,12 @@ import CurrentEventsPage from './CurrentEvents.tsx'
 import EquipmentPage from './Eqiupment.tsx'
 import { IAppRoutingMap } from './common/IAppRoutingMap.ts'
 import { IAppRoute } from './common/IAppRoute.ts'
-import IntroductionPage from './eda/IntroductionPage.tsx'
-import SettingsPage from './eda/SettingsPage.tsx'
-import ProcessingPage from './eda/ProcessingPage.tsx'
-import ViewPage from './eda/ViewPage.tsx'
+import { Routes as EdaRoutes } from './eda'
+
+function isIAppRoute(o: IAppRoute): boolean {
+    const props = Object.getOwnPropertyNames(o)
+    return o && props.includes('path') && props.includes('element')
+}
 
 class RootAppRoutingMap extends Object implements IAppRoutingMap {
     public readonly Home: IAppRoute = {
@@ -36,40 +38,49 @@ class RootAppRoutingMap extends Object implements IAppRoutingMap {
         element: <EquipmentPage />,
         title: 'Снаряжение',
     }
+    public readonly Eda: IAppRoute = EdaRoutes
+    private _routes?: RouteObject[] = undefined
 
-    public readonly Eda: IAppRoute = {
-        path: '/eda',
-        element: <IntroductionPage />,
-        title: 'Еда в поход',
-    }
-
-    public readonly EdaSettings: IAppRoute = {
-        path: '/eda/settings',
-        element: <SettingsPage />,
-        title: 'Еда в поход',
-    }
-
-    public readonly EdaProcessing: IAppRoute = {
-        path: '/eda/processing',
-        element: <ProcessingPage />,
-        title: 'Готовим раскладку',
-    }
-
-    public readonly EdaView: IAppRoute = {
-        path: 'eda/view',
-        element: <ViewPage />,
-        title: 'Просмотр раскладки',
-    }
+    // public readonly EdaSettings: IAppRoute = {
+    //     path: '/eda/settings',
+    //     element: <SettingsPage />,
+    //     title: 'Еда в поход',
+    // }
+    //
+    // public readonly EdaProcessing: IAppRoute = {
+    //     path: '/eda/processing',
+    //     element: <ProcessingPage />,
+    //     title: 'Готовим раскладку',
+    // }
+    //
+    // public readonly EdaView: IAppRoute = {
+    //     path: 'eda/view',
+    //     element: <ViewPage />,
+    //     title: 'Просмотр раскладки',
+    // }
 
     public getRoutes(): RouteObject[] {
+        if (this._routes) return this._routes
+
         const keys = Object.keys(this) as Array<keyof RootAppRoutingMap>
 
-        return keys
+        this._routes = keys
             .map((k) => this[k] as IAppRoute)
+            .filter(isIAppRoute)
             .map((r) => ({
                 element: r.element,
                 path: r.path,
+                children: r.children ? this.mapChildren(r.children) : undefined,
             }))
+        return this._routes
+    }
+
+    private mapChildren(children: IAppRoute[]): RouteObject[] {
+        return children.map((r) => ({
+            element: r.element,
+            path: r.path,
+            children: r.children ? this.mapChildren(r.children) : undefined,
+        }))
     }
 }
 

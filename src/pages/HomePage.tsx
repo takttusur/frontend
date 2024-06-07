@@ -4,6 +4,7 @@ import GrayPanel from '../components/Common/GrayPanel.tsx'
 import './HomePage.css'
 import SecondaryButton from '../shared/ui/SecondaryButton.tsx'
 import PrimaryButton from '../shared/ui/PrimaryButton.tsx'
+import rootAppRoutingMap from './index.tsx'
 
 export default function HomePage(): JSX.Element {
     return (
@@ -12,7 +13,10 @@ export default function HomePage(): JSX.Element {
                 Туристско-Альпинистский клуб ТУСУРа
             </HeaderText>
             <GrayPanel>
-                <PrimaryButton title="Создать раскладку"></PrimaryButton>
+                <PrimaryButton
+                    title="Создать раскладку"
+                    reactLink={{ to: rootAppRoutingMap.Eda.path }}
+                ></PrimaryButton>
                 <SecondaryButton title="Центральный склад" disabled={true} />
                 <SecondaryButton title="Личный кабинет" disabled={true} />
             </GrayPanel>

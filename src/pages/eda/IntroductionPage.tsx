@@ -1,8 +1,8 @@
-import GrayPanel from '../../components/Common/GrayPanel.tsx'
-import ExpandablePanel from '../../components/Common/ExpandablePanel.tsx'
 import ScrollLayout from '../../components/Common/ScrollLayout.tsx'
+import GrayPanel from '../../components/Common/GrayPanel.tsx'
 import PrimaryButton from '../../shared/ui/PrimaryButton.tsx'
 import SecondaryButton from '../../shared/ui/SecondaryButton.tsx'
+import ExpandablePanel from '../../components/Common/ExpandablePanel.tsx'
 
 function IntroductionPage(): JSX.Element {
     return (
