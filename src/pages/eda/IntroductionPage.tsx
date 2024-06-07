@@ -1,8 +1,8 @@
 import GrayPanel from '../../components/Common/GrayPanel.tsx'
-import BlueButton from '../../components/Common/BlueButton.tsx'
-import HollowButton from '../../components/Common/HollowButton.tsx'
 import ExpandablePanel from '../../components/Common/ExpandablePanel.tsx'
 import ScrollLayout from '../../components/Common/ScrollLayout.tsx'
+import PrimaryButton from '../../shared/ui/PrimaryButton.tsx'
+import SecondaryButton from '../../shared/ui/SecondaryButton.tsx'
 
 function IntroductionPage(): JSX.Element {
     return (
@@ -14,8 +14,11 @@ function IntroductionPage(): JSX.Element {
                     удовольствие от похода! Путешествуйте легко и комфортно с
                     нашим сервисом!
                 </p>
-                <BlueButton title="Начать" />
-                <HollowButton title="Импорт из Google Таблиц" disabled={true} />
+                <PrimaryButton title="Начать" />
+                <SecondaryButton
+                    title="Импорт из Google Таблиц"
+                    disabled={true}
+                />
             </GrayPanel>
             <GrayPanel title="FAQ">
                 <ExpandablePanel title="Как пользоваться нашим сервисом?">

@@ -5,8 +5,8 @@ import SwitchButton, {
 } from '../../components/Common/SwitchButton.tsx'
 import DayPlanShort from '../../components/Common/DayPlanShort.tsx'
 import BottomNavigation from '../../components/Common/BottonNavigation.tsx'
-import BlueButton from '../../components/Common/BlueButton.tsx'
 import './ViewPage.css'
+import PrimaryButton from '../../shared/ui/PrimaryButton.tsx'
 
 const options: ISwitchButtonOptions[] = [
     {
@@ -29,7 +29,7 @@ export default function ViewPage(): JSX.Element {
                 <DayPlanShort />
                 <DayPlanShort />
                 <span className="meal-summary-text">Всего: 7000 грамм</span>
-                <BlueButton title="Экспорт раскладки"></BlueButton>
+                <PrimaryButton title="Экспорт раскладки"></PrimaryButton>
             </ScrollLayout>
             <BottomNavigation></BottomNavigation>
         </div>

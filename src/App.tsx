@@ -1,9 +1,7 @@
 import './App.css'
-import MainMenu from './components/Navigation/MainMenu'
-import Footer from './components/Footer'
 
 import { useRoutes } from 'react-router-dom'
-import rootRoutes from './routes/'
+import rootRoutes from './pages/'
 import YandexMetrikaCounter from './components/Common/YandexMetrikaCounter.tsx'
 import EnvironmentService from './services/EnvironmentService'
 
@@ -14,9 +12,7 @@ export default function App(): JSX.Element {
 
     return (
         <>
-            <MainMenu />
             {routesElement}
-            <Footer />
             <YandexMetrikaCounter
                 isEnabled={EnvironmentService.YandexMetrikaEnabled}
                 id={EnvironmentService.YandexMetrikaId}

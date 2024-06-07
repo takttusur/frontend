@@ -1,20 +1,14 @@
-button.blue-button {
+.button.button_primary {
     display: inline-flex;
     padding: 16px 24px;
     justify-content: center;
     align-items: center;
     gap: 8px;
-
     border-radius: 16px;
     border-width: 0;
     cursor: pointer;
     background: #36449c;
-
     color: #fff;
-    leading-trim: both;
-    text-edge: cap;
-
-    /* body/button */
     font-family: Onest, sans-serif;
     font-size: 18px;
     font-style: normal;
@@ -22,11 +16,11 @@ button.blue-button {
     line-height: normal;
 }
 
-button.blue-button:not(:disabled):hover {
-    box-shadow: 0px 4px 4px 0px rgba(216, 216, 216, 0.25);
+.button.button_primary:not(:disabled):hover {
+    box-shadow: 0 4px 4px 0 rgba(216, 216, 216, 0.25);
 }
 
-button.blue-button:active {
+.button.button_primary:active {
     background: #222b62;
     border-color: #222b62;
 }

@@ -1,7 +1,7 @@
 import './GrayPanel.css'
 
 export interface GrayPanelProps {
-    title: string
+    title?: string
 }
 
 export default function GrayPanel(
@@ -9,7 +9,7 @@ export default function GrayPanel(
 ): JSX.Element {
     return (
         <div className="gray-panel">
-            <h1>{props.title}</h1>
+            {props.title && <h1>{props.title}</h1>}
             {props.children}
         </div>
     )

@@ -1,5 +1,5 @@
-import { IAppRoute } from '../routes/common/IAppRoute.ts'
 import { INavLinkProps } from '../components/Navigation/NavLink.tsx'
+import { IAppRoute } from '../pages/common/IAppRoute.ts'
 
 export function ToNavLinkProps(route: IAppRoute): INavLinkProps {
     return {
