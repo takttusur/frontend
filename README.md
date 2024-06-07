@@ -7,17 +7,24 @@
 
 ## Функциональность
 
-* Отображение новостей
-* Отображение ближайших событий
-* Отображение доступного снаряжения на центральном складе
+* Генератор раскладки(плана питания) для выездов/походов
+* Страница для набора новичков
+* Страница с информацией о клубе
+
+*Функциональность будет добавлять по мере разработки*
+
 
 ## Технологии
 
 * [React.js](https://react.dev)
-* [Chakra-UI](https://chakra-ui.com)
 * [TanStack/query](https://github.com/TanStack/query)
 * [Vite](https://vitejs.dev)
 * [Docker](https://www.docker.com)
+
+## Методологии
+
+* [BEM](https://ru.bem.info/methodology/)
+* [Feature-sliced design](https://feature-sliced.design/ru/)
 
 ## Сборка
 
