@@ -1,30 +1,30 @@
 import './ExpandablePanel.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
-import { useState } from 'react'
+import { PropsWithChildren, useState } from 'react'
 
-interface ExpandablePanelProps {
+interface IExpandablePanelProps {
     title: string
 }
 
-interface ExpandablePanelState {
+interface IExpandablePanelState {
     isOpened: boolean
 }
 
 export default function ExpandablePanel(
-    props: React.PropsWithChildren<ExpandablePanelProps>
+    props: PropsWithChildren<IExpandablePanelProps>
 ): JSX.Element {
-    const [state, setState] = useState<ExpandablePanelState>({
+    const [state, setState] = useState<IExpandablePanelState>({
         isOpened: false,
     })
 
     const className = state.isOpened
-        ? 'expandable-panel expanded'
+        ? 'expandable-panel expandable-panel_expanded'
         : 'expandable-panel'
 
     return (
         <div className={className}>
-            <div className="expandable-panel-header">
+            <div className="expandable-panel__header">
                 <p>{props.title}</p>
                 <button
                     onClick={() =>
@@ -35,13 +35,15 @@ export default function ExpandablePanel(
                     }
                 >
                     <FontAwesomeIcon
-                        icon={state.isOpened ? faChevronDown : faChevronUp}
-                        className="expandable-panel-icon"
+                        icon={state.isOpened ? faChevronUp : faChevronDown}
+                        className="expandable-panel__header__icon"
                     />
                 </button>
             </div>
             {state.isOpened && (
-                <div className="expandable-panel-content">{props.children}</div>
+                <div className="expandable-panel__content">
+                    {props.children}
+                </div>
             )}
         </div>
     )

@@ -1,4 +1,3 @@
-import ScrollLayout from '../../components/Common/ScrollLayout.tsx'
 import HeadTitle from '../../components/Common/HeadTitle.tsx'
 import SwitchButton, {
     ISwitchButtonOptions,
@@ -7,6 +6,7 @@ import DayPlanShort from '../../components/Common/DayPlanShort.tsx'
 import BottomNavigation from '../../components/Common/BottonNavigation.tsx'
 import './ViewPage.css'
 import PrimaryButton from '../../shared/ui/PrimaryButton.tsx'
+import ScrollLayout from '../../shared/ui/ScrollLayout.tsx'
 
 const options: ISwitchButtonOptions[] = [
     {

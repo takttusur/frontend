@@ -8,6 +8,8 @@ import { IAppRoute } from './common/IAppRoute.ts'
 import { Routes as EdaRoutes } from './eda'
 
 function isIAppRoute(o: IAppRoute): boolean {
+    if (!o) return false
+
     const props = Object.getOwnPropertyNames(o)
     return o && props.includes('path') && props.includes('element')
 }

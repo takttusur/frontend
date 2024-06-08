@@ -1,5 +1,3 @@
-import GrayPanel from '../../components/Common/GrayPanel.tsx'
-import ScrollLayout from '../../components/Common/ScrollLayout.tsx'
 import SelectList, {
     ISelectListOption,
 } from '../../components/Common/SelectList.tsx'
@@ -9,8 +7,10 @@ import MultiselectInput from '../../components/Common/MultiselectInput.tsx'
 import './SettingsPage.css'
 import SecondaryButton from '../../shared/ui/SecondaryButton.tsx'
 import PrimaryButton from '../../shared/ui/PrimaryButton.tsx'
+import ScrollLayout from '../../shared/ui/ScrollLayout.tsx'
+import CardPanel from '../../shared/ui/CardPanel.tsx'
 
-function SettingsPage(): JSX.Element {
+function CreatePage(): JSX.Element {
     const options: ISelectListOption[] = [
         { text: 'Ноль', value: '0' },
         { text: 'Один', value: '1' },
@@ -18,7 +18,7 @@ function SettingsPage(): JSX.Element {
 
     return (
         <ScrollLayout>
-            <GrayPanel title="Заполнение анкеты">
+            <CardPanel title="Заполнение анкеты">
                 <SelectList
                     title="Какой вид туризма?"
                     options={options}
@@ -59,9 +59,9 @@ function SettingsPage(): JSX.Element {
                     <SecondaryButton title="Назад" disabled={false} />
                     <PrimaryButton title="Вперёд" />
                 </div>
-            </GrayPanel>
+            </CardPanel>
         </ScrollLayout>
     )
 }
 
-export default SettingsPage
+export default CreatePage

@@ -1,30 +1,13 @@
-import ScrollLayout from '../../components/Common/ScrollLayout.tsx'
-import GrayPanel from '../../components/Common/GrayPanel.tsx'
-import PrimaryButton from '../../shared/ui/PrimaryButton.tsx'
-import SecondaryButton from '../../shared/ui/SecondaryButton.tsx'
-import ExpandablePanel from '../../components/Common/ExpandablePanel.tsx'
+import IntroductionPanel from '../../features/eda/create-eda/ui/IntroductionPanel.tsx'
+import FaqPanel from '../../features/eda/create-eda/ui/FaqPanel.tsx'
+import ScrollLayout from '../../shared/ui/ScrollLayout.tsx'
+import { ROUTE_CREATE } from './index.tsx'
 
 function IntroductionPage(): JSX.Element {
     return (
         <ScrollLayout>
-            <GrayPanel title="Твой помощник в составлении раскладки">
-                <p>
-                    Мы автоматически составим оптимальное меню на несколько
-                    дней. Никаких лишних продуктов и ненужных проблем – только
-                    удовольствие от похода! Путешествуйте легко и комфортно с
-                    нашим сервисом!
-                </p>
-                <PrimaryButton title="Начать" />
-                <SecondaryButton
-                    title="Импорт из Google Таблиц"
-                    disabled={true}
-                />
-            </GrayPanel>
-            <GrayPanel title="FAQ">
-                <ExpandablePanel title="Как пользоваться нашим сервисом?">
-                    123321
-                </ExpandablePanel>
-            </GrayPanel>
+            <IntroductionPanel pathToCreatePage={ROUTE_CREATE.path} />
+            <FaqPanel />
         </ScrollLayout>
     )
 }
