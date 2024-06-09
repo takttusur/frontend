@@ -25,3 +25,11 @@
     background: #222b62;
     border-color: #222b62;
 }
+
+.button.button_primary:disabled {
+    background: #9398b5;
+    border-color: #9398b5;
+
+    color: #fff;
+    cursor: not-allowed;
+}

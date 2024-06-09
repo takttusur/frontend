@@ -4,6 +4,7 @@ interface ISecondaryButtonProps {
     title: string
     disabled?: boolean
     profile?: 'small' | 'normal'
+    onClick?: () => void
 }
 
 export default function SecondaryButton(
@@ -20,7 +21,11 @@ export default function SecondaryButton(
     }
 
     return (
-        <button className={buttonClass} disabled={props.disabled}>
+        <button
+            className={buttonClass}
+            disabled={!props.onClick || props.disabled}
+            onClick={() => props.onClick?.()}
+        >
             {props.title}
         </button>
     )

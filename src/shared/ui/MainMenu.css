@@ -22,3 +22,15 @@
     line-height: normal;
     text-transform: uppercase;
 }
+
+.logo.logo_clickable {
+    cursor: pointer;
+}
+
+.logo.logo_clickable:hover {
+    background-color: #f0f0f0;
+}
+
+.logo.logo_clickable:active {
+    background-color: #d0d0d0;
+}

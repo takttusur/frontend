@@ -1,14 +1,14 @@
-import PrimaryButton from '../../../../shared/ui/PrimaryButton.tsx'
-import SecondaryButton from '../../../../shared/ui/SecondaryButton.tsx'
 import { PropsWithoutRef } from 'react'
-import CardPanel from '../../../../shared/ui/CardPanel.tsx'
+import CardPanel from '../../../shared/ui/CardPanel.tsx'
+import PrimaryButton from '../../../shared/ui/PrimaryButton.tsx'
+import SecondaryButton from '../../../shared/ui/SecondaryButton.tsx'
 
-export interface IIntroductionPanelProps {
+export interface IIntroductionWidgetProps {
     pathToCreatePage: string
 }
 
-export default function IntroductionPanel(
-    props: PropsWithoutRef<IIntroductionPanelProps>
+export default function IntroductionWidget(
+    props: PropsWithoutRef<IIntroductionWidgetProps>
 ): JSX.Element {
     return (
         <CardPanel title="Твой помощник в составлении раскладки">

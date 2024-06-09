@@ -1,7 +1,7 @@
-import ExpandablePanel from '../../../../shared/ui/ExpandablePanel.tsx'
-import CardPanel from '../../../../shared/ui/CardPanel.tsx'
+import CardPanel from '../../../shared/ui/CardPanel.tsx'
+import ExpandablePanel from '../../../shared/ui/ExpandablePanel.tsx'
 
-export default function FaqPanel(): JSX.Element {
+export default function FaqWidget(): JSX.Element {
     return (
         <CardPanel title="FAQ">
             <ExpandablePanel title="Что это?">
