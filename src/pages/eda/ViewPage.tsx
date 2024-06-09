@@ -1,37 +1,23 @@
-import HeadTitle from '../../components/Common/HeadTitle.tsx'
-import SwitchButton, {
-    ISwitchButtonOptions,
-} from '../../components/Common/SwitchButton.tsx'
-import DayPlanShort from '../../components/Common/DayPlanShort.tsx'
-import BottomNavigation from '../../components/Common/BottonNavigation.tsx'
 import './ViewPage.css'
-import PrimaryButton from '../../shared/ui/PrimaryButton.tsx'
-import ScrollLayout from '../../shared/ui/ScrollLayout.tsx'
+import ViewWidget from '../../widgets/eda-view/ViewWidget.tsx'
+import { useState } from 'react'
 
-const options: ISwitchButtonOptions[] = [
-    {
-        text: 'Общий',
-        value: 'Общий',
-    },
-    {
-        text: 'По дням',
-        value: 'По дням',
-    },
-]
+interface IViewPageState {
+    isLoading: boolean
+}
+
+const initialState: IViewPageState = {
+    isLoading: true,
+}
 
 export default function ViewPage(): JSX.Element {
-    return (
-        <div>
-            <ScrollLayout>
-                <HeadTitle title="Раскладка" />
-                <SwitchButton options={options} selectedValue={options[0]} />
-                <DayPlanShort />
-                <DayPlanShort />
-                <DayPlanShort />
-                <span className="meal-summary-text">Всего: 7000 грамм</span>
-                <PrimaryButton title="Экспорт раскладки"></PrimaryButton>
-            </ScrollLayout>
-            <BottomNavigation></BottomNavigation>
-        </div>
-    )
+    const [state, setState] = useState<IViewPageState>(initialState)
+
+    if (state.isLoading) {
+        setTimeout(() => {
+            setState((prevState) => ({ ...prevState, isLoading: false }))
+        }, 5000)
+    }
+
+    return <ViewWidget id="0" isLoading={state.isLoading} />
 }

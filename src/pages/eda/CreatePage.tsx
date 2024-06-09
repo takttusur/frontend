@@ -17,7 +17,7 @@ function CreatePage(): JSX.Element {
         setState(true)
         setTimeout(() => {
             navigate(ROUTE_VIEW.path.replace(':id', '12342'))
-        }, 5000)
+        }, 2000)
     }
 
     return (

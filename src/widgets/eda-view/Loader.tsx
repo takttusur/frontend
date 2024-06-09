@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBowlFood } from '@fortawesome/free-solid-svg-icons'
-import './ProcessingPage.css'
+import './Loader.css'
 
 function ProcessingPage(): JSX.Element {
     return (
@@ -10,7 +10,7 @@ function ProcessingPage(): JSX.Element {
                 beatFade={true}
                 className="eda-loading-icon"
             />
-            <p>Происходит магия. Раскладка будет готова через пару мгновений</p>
+            <p>Ваша раскладка скоро появится здесь</p>
         </div>
     )
 }

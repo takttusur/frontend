@@ -26,5 +26,5 @@ export const Routes: IAppRoute = {
     path: '/eda',
     element: <EdaPage />,
     title: 'Еда в поход',
-    children: [ROUTE_INTRODUCTION, ROUTE_CREATE],
+    children: [ROUTE_INTRODUCTION, ROUTE_CREATE, ROUTE_VIEW],
 }
