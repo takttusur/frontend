@@ -1,10 +1,10 @@
 import { PropsWithoutRef, useState } from 'react'
 import ScrollLayout from '../../../shared/ui/ScrollLayout.tsx'
-import { ICreateEdaDto } from '../../../shared/api/EdaApi.ts'
 import CardPanel from '../../../shared/ui/CardPanel.tsx'
 import SecondaryButton from '../../../shared/ui/SecondaryButton.tsx'
 import PrimaryButton from '../../../shared/ui/PrimaryButton.tsx'
 import UserInput from '../../../shared/ui/UserInput.tsx'
+import { ICreateEdaDto } from '../../../shared/api/types.ts'
 
 export interface ICreateWidgetProps {
     onSubmit: (form: ICreateEdaDto) => void

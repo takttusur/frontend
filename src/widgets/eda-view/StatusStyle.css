@@ -1,4 +1,4 @@
-.eda-loading-container {
+.eda-status-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9,13 +9,13 @@
     margin-top: 10vh;
 }
 
-.eda-loading-icon {
+.eda-status-icon {
     color: #787885;
     width: 124px;
     height: 124px;
 }
 
-.eda-loading-container p {
+.eda-status-container p {
     width: 219px;
 
     color: #222;
